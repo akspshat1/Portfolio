@@ -241,22 +241,112 @@ class SpacePortfolio {
             });
         }
     }
+    // Add before triggerLaunchSequence in app.js
+    showLaunchCountdown(callback) {
+        const countdown = document.createElement('div');
+        countdown.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: #ff6b35;
+            font-weight: bold;
+            z-index: 1000;
+            text-shadow: 0 0 20px #ff6b35;
+        `;
+        document.body.appendChild(countdown);
+        
+        let count = 3;
+        const timer = setInterval(() => {
+            countdown.textContent = count;
+            count--;
+            
+            if (count < 0) {
+                countdown.textContent = 'LAUNCH!';
+                clearInterval(timer);
+                setTimeout(() => {
+                    document.body.removeChild(countdown);
+                    callback();
+                }, 500);
+            }
+        }, 1000);
+    }
+
+    // Update your launch button event to use countdown
+    setupLaunchButton() {
+        const launchBtn = document.getElementById('launchBtn');
+        const spaceshipContainer = document.querySelector('.spaceship-container');
+
+        if (launchBtn && spaceshipContainer) {
+            launchBtn.addEventListener('click', () => {
+                this.showLaunchCountdown(() => {
+                    this.triggerLaunchSequence(spaceshipContainer);
+                });
+            });
+        }
+    }
+
 
     triggerLaunchSequence(spaceship) {
-        // Show spaceship
-        spaceship.style.opacity = '1';
-        spaceship.style.animation = 'spaceship-fly 3s ease-in-out forwards';
+    // Disable the launch button immediately
+        const launchBtn = document.getElementById('launchBtn');
+        launchBtn.disabled = true;
+        launchBtn.style.opacity = '0.5';
+        launchBtn.style.cursor = 'not-allowed';
         
-        // Trigger audio
+        // Start the one-way launch
+        spaceship.style.animation = 'rocket-launch-forever 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        
+        // Animate flames during launch
+        const flames = spaceship.querySelectorAll('#rocketFlames ellipse');
+        flames.forEach((flame, index) => {
+            flame.style.animation = `flame-launch 0.${12 + index}s infinite`;
+        });
+        
+        // Create exhaust trail that follows rocket up
+        const smoke = document.getElementById('rocketSmoke');
+        smoke.innerHTML = '';
+        
+        // Create trailing particles
+        for(let i = 0; i < 25; i++) {
+            setTimeout(() => {
+                const particle = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+                particle.setAttribute("cx", 45 + Math.random() * 10);
+                particle.setAttribute("cy", 200 + Math.random() * 20);
+                particle.setAttribute("rx", 2 + Math.random() * 3);
+                particle.setAttribute("ry", 5 + Math.random() * 8);
+                
+                // Flame colors
+                const colors = ['#ff6b35', '#f44336', '#ff9800', '#ffeb3b'];
+                particle.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+                particle.style.opacity = 0.8;
+                
+                // Particle follows rocket path
+                particle.style.animation = `rocket-launch-forever 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+                particle.style.animationDelay = `-${i * 50}ms`;
+                
+                smoke.appendChild(particle);
+            }, i * 80);
+        }
+        
+        // Audio trigger
         if (window.audioManager) {
             window.audioManager.playLaunchSound();
         }
-
-        // Reset animation
+        
+        // After 4 seconds, rocket is completely gone
         setTimeout(() => {
-            spaceship.style.animation = '';
-            spaceship.style.opacity = '0';
-        }, 3000);
+            spaceship.style.display = 'none'; // Hide forever
+            
+            // Update button text to show rocket is gone
+            const buttonText = launchBtn.querySelector('span');
+            if (buttonText) {
+                buttonText.innerHTML = '🌌 ROCKET LAUNCHED';
+            }
+        }, 4000);
+        
+        // No reset - rocket stays gone forever!
     }
 
     // Responsive animations

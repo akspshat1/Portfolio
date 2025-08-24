@@ -357,6 +357,110 @@
     }
 }
 
+/* Epic Rocket Launch */
+@keyframes epic-rocket-launch {
+    0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+    5% { transform: translateY(-10px) scale(0.98, 1.02) rotate(-1deg); }
+    15% { transform: translateY(-30px) scale(1.02, 0.98) rotate(2deg); }
+    30% { transform: translateY(-100px) scale(1.05, 0.95) rotate(5deg); }
+    50% { transform: translateY(-200px) scale(1.08, 0.92) rotate(10deg); }
+    70% { transform: translateY(-350px) scale(1.1, 0.9) rotate(15deg); }
+    85% { transform: translateY(-500px) scale(1.05, 1) rotate(18deg); opacity: 0.8; }
+    100% { transform: translateY(-700px) scale(1, 1) rotate(20deg); opacity: 0; }
+}
+
+/* Multiple Flame Flicker */
+@keyframes flame-flicker-1 {
+    0%, 100% { opacity: 0.9; transform: scaleY(1) scaleX(1); }
+    25% { opacity: 0.7; transform: scaleY(1.3) scaleX(0.8); }
+    50% { opacity: 1; transform: scaleY(0.8) scaleX(1.2); }
+    75% { opacity: 0.8; transform: scaleY(1.1) scaleX(0.9); }
+}
+
+@keyframes flame-flicker-2 {
+    0%, 100% { opacity: 0.8; transform: scaleY(1) scaleX(1); }
+    33% { opacity: 1; transform: scaleY(1.4) scaleX(0.7); }
+    66% { opacity: 0.6; transform: scaleY(0.7) scaleX(1.3); }
+}
+
+@keyframes flame-flicker-3 {
+    0%, 100% { opacity: 0.9; transform: scaleY(1) scaleX(1); }
+    20% { opacity: 0.8; transform: scaleY(1.2) scaleX(0.9); }
+    60% { opacity: 1; transform: scaleY(0.9) scaleX(1.1); }
+    80% { opacity: 0.7; transform: scaleY(1.3) scaleX(0.8); }
+}
+
+/* Screen Shake Effect */
+@keyframes screen-shake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2px, -1px); }
+    20% { transform: translate(2px, 1px); }
+    30% { transform: translate(-1px, 2px); }
+    40% { transform: translate(1px, -2px); }
+    50% { transform: translate(-2px, 1px); }
+    60% { transform: translate(2px, -1px); }
+    70% { transform: translate(-1px, -2px); }
+    80% { transform: translate(1px, 2px); }
+    90% { transform: translate(-1px, 1px); }
+}
+/* One-way rocket launch - never returns */
+@keyframes rocket-launch-forever {
+    0%   { 
+        transform: translateY(0) scale(1) rotate(0deg); 
+        opacity: 1; 
+    }
+    
+    /* Initial thrust */
+    5%   { 
+        transform: translateY(-10px) scale(1.02) rotate(0deg); 
+        opacity: 1; 
+    }
+    
+    /* Gaining speed */
+    15%  { 
+        transform: translateY(-50px) scale(1.05) rotate(3deg); 
+        opacity: 1; 
+    }
+    
+    /* Fast acceleration */
+    30%  { 
+        transform: translateY(-150px) scale(1.1) rotate(8deg); 
+        opacity: 1; 
+    }
+    
+    /* Breaking atmosphere */
+    50%  { 
+        transform: translateY(-300px) scale(1.15) rotate(15deg); 
+        opacity: 0.9; 
+    }
+    
+    /* Into space */
+    70%  { 
+        transform: translateY(-500px) scale(1.2) rotate(22deg); 
+        opacity: 0.6; 
+    }
+    
+    /* Gone forever */
+    100% { 
+        transform: translateY(-800px) scale(1.3) rotate(30deg); 
+        opacity: 0; 
+        display: none;
+    }
+}
+
+/* Flame animation during launch */
+@keyframes flame-launch {
+    0%,100% { 
+        opacity: 0.9; 
+        transform: scaleY(1) scaleX(1); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scaleY(1.5) scaleX(0.8); 
+    }
+}
+
+
 /* Hover effects for photo */
 .profile-photo:hover {
     transform: scale(1.05);

@@ -175,66 +175,59 @@ class AudioManager {
         this.sounds.launch = () => {
             if (!this.audioContext || this.isMuted) return;
             
-            // Create rocket launch sound with multiple components
-            const oscillator1 = this.audioContext.createOscillator();
-            const oscillator2 = this.audioContext.createOscillator();
-            const noiseBuffer = this.createNoiseBuffer(2);
-            const noiseSource = this.audioContext.createBufferSource();
-            
-            const gainNode1 = this.audioContext.createGain();
-            const gainNode2 = this.audioContext.createGain();
-            const noiseGain = this.audioContext.createGain();
-            const filterNode = this.audioContext.createBiquadFilter();
-            
-            noiseSource.buffer = noiseBuffer;
-            
-            // Low rumble
-            oscillator1.frequency.setValueAtTime(50, this.audioContext.currentTime);
-            oscillator1.frequency.linearRampToValueAtTime(30, this.audioContext.currentTime + 2);
-            
-            // High whistle
-            oscillator2.frequency.setValueAtTime(2000, this.audioContext.currentTime);
-            oscillator2.frequency.exponentialRampToValueAtTime(4000, this.audioContext.currentTime + 0.5);
-            oscillator2.frequency.exponentialRampToValueAtTime(100, this.audioContext.currentTime + 2);
-            
-            // Filter for noise (rocket exhaust)
-            filterNode.type = 'lowpass';
-            filterNode.frequency.setValueAtTime(1000, this.audioContext.currentTime);
-            
-            // Gain envelopes
-            gainNode1.gain.setValueAtTime(0, this.audioContext.currentTime);
-            gainNode1.gain.linearRampToValueAtTime(0.3 * this.masterVolume, this.audioContext.currentTime + 0.1);
-            gainNode1.gain.linearRampToValueAtTime(0.1 * this.masterVolume, this.audioContext.currentTime + 1.5);
-            gainNode1.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 2);
-            
-            gainNode2.gain.setValueAtTime(0, this.audioContext.currentTime);
-            gainNode2.gain.linearRampToValueAtTime(0.2 * this.masterVolume, this.audioContext.currentTime + 0.1);
-            gainNode2.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 0.8);
-            
-            noiseGain.gain.setValueAtTime(0, this.audioContext.currentTime);
-            noiseGain.gain.linearRampToValueAtTime(0.4 * this.masterVolume, this.audioContext.currentTime + 0.2);
-            noiseGain.gain.linearRampToValueAtTime(0.2 * this.masterVolume, this.audioContext.currentTime + 1.5);
-            noiseGain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 2);
-            
+            // Deep rocket rumble (oscillator)
+            const rumbleOsc = this.audioContext.createOscillator();
+            rumbleOsc.type = 'triangle';
+            rumbleOsc.frequency.setValueAtTime(36, this.audioContext.currentTime);
+            rumbleOsc.frequency.linearRampToValueAtTime(20, this.audioContext.currentTime + 2.3);
+
+            const rumbleGain = this.audioContext.createGain();
+            rumbleGain.gain.setValueAtTime(0, this.audioContext.currentTime);
+            rumbleGain.gain.linearRampToValueAtTime(0.22 * this.masterVolume, this.audioContext.currentTime + 0.06);
+            rumbleGain.gain.linearRampToValueAtTime(0.14 * this.masterVolume, this.audioContext.currentTime + 0.7);
+            rumbleGain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 2.5);
+
+            // Crackle (noise)
+            const crackleBuffer = this.createNoiseBuffer(1.1);
+            const crackleSource = this.audioContext.createBufferSource();
+            crackleSource.buffer = crackleBuffer;
+
+            const crackleGain = this.audioContext.createGain();
+            crackleGain.gain.setValueAtTime(0, this.audioContext.currentTime);
+            crackleGain.gain.linearRampToValueAtTime(0.12 * this.masterVolume, this.audioContext.currentTime + 0.15);
+            crackleGain.gain.linearRampToValueAtTime(0.04 * this.masterVolume, this.audioContext.currentTime + 0.8);
+            crackleGain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 1.2);
+
+            // Whoosh (filtered noise, even longer)
+            const whooshBuffer = this.createNoiseBuffer(2.8);
+            const whooshSource = this.audioContext.createBufferSource();
+            whooshSource.buffer = whooshBuffer;
+
+            const whooshFilter = this.audioContext.createBiquadFilter();
+            whooshFilter.type = 'bandpass';
+            whooshFilter.frequency.setValueAtTime(900, this.audioContext.currentTime);
+            whooshFilter.frequency.linearRampToValueAtTime(300, this.audioContext.currentTime + 1.7);
+
+            const whooshGain = this.audioContext.createGain();
+            whooshGain.gain.setValueAtTime(0, this.audioContext.currentTime);
+            whooshGain.gain.linearRampToValueAtTime(0.19 * this.masterVolume, this.audioContext.currentTime + 0.25);
+            whooshGain.gain.linearRampToValueAtTime(0.04 * this.masterVolume, this.audioContext.currentTime + 1.4);
+            whooshGain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 2.7);
+
             // Connect nodes
-            oscillator1.connect(gainNode1);
-            oscillator2.connect(gainNode2);
-            noiseSource.connect(filterNode);
-            filterNode.connect(noiseGain);
-            
-            gainNode1.connect(this.audioContext.destination);
-            gainNode2.connect(this.audioContext.destination);
-            noiseGain.connect(this.audioContext.destination);
-            
-            // Start sounds
-            oscillator1.start();
-            oscillator2.start();
-            noiseSource.start();
-            
-            // Stop sounds
-            oscillator1.stop(this.audioContext.currentTime + 2);
-            oscillator2.stop(this.audioContext.currentTime + 2);
-            noiseSource.stop(this.audioContext.currentTime + 2);
+            rumbleOsc.connect(rumbleGain).connect(this.audioContext.destination);
+            crackleSource.connect(crackleGain).connect(this.audioContext.destination);
+            whooshSource.connect(whooshFilter).connect(whooshGain).connect(this.audioContext.destination);
+
+            // Start everything
+            rumbleOsc.start();
+            crackleSource.start();
+            whooshSource.start();
+
+            // Stop all after 2.8s
+            rumbleOsc.stop(this.audioContext.currentTime + 2.6);
+            crackleSource.stop(this.audioContext.currentTime + 1.25);
+            whooshSource.stop(this.audioContext.currentTime + 2.8);
         };
     }
 

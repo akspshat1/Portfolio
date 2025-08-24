@@ -839,3 +839,34 @@ h1, h2, h3, h4, h5, h6 {
     .ring-2 { width: 220px; height: 220px; }
     .ring-3 { width: 260px; height: 260px; }
 }
+/* Big Rocket Positioning */
+/* Better positioned rocket - bottom right, doesn't overlap text */
+/* Rocket only on hero section - absolute positioning */
+.spaceship-container {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    opacity: 1;
+    z-index: 5;
+    transform: none;
+    pointer-events: none;
+}
+
+.spaceship {
+    width: 80px;
+    height: 200px;
+    filter: drop-shadow(0 0 15px rgba(100, 181, 246, 0.4));
+    transition: all 0.3s ease;
+}
+
+/* Grow on button hover */
+.launch-btn:hover ~ * .spaceship-container .spaceship {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(100, 181, 246, 0.7));
+}
+
+/* Hide rocket on other sections */
+.section:not(#hero) .spaceship-container {
+    display: none;
+}
+
