@@ -871,17 +871,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hide rocket and launch button on small mobile devices */
-@media (max-width: 480px) {
+/* Show only on large desktop screens */
+/* Hide on everything except large desktops */
+@media (max-width: 1279px) {
   .spaceship-container,
   .launch-btn {
     display: none !important;
   }
 }
 
-/* Or hide them on all mobile devices */
-@media (max-width: 768px) {
-  .spaceship-container,
+/* Only show on screens 1280px and wider */
+@media (min-width: 1280px) {
+  .spaceship-container {
+    display: block !important;
+  }
+  
   .launch-btn {
-    display: none !important;
+    display: inline-flex !important;
   }
 }
