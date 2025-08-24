@@ -70,29 +70,57 @@
                     <p class="hero-subtitle">Data Scientist & AI Engineer</p>
                     <p class="hero-description">Exploring the infinite possibilities of artificial intelligence and data science</p>
                     <button class="launch-btn" id="launchBtn">
-                        <span>INITIATE LAUNCH</span>
-                        <svg class="rocket-icon" width="20" height="20" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M2.81 14.12L5.64 11.29L8.17 10.79C11.39 6.41 17.55 5.94 19.78 8.17C22.01 10.4 21.54 16.56 17.16 19.78L16.66 22.31L13.83 19.48L14.04 17.17C11.39 19.52 7.64 19.75 5.64 17.75C3.64 15.75 3.87 12 6.22 9.35L8.53 9.56L5.7 12.39L2.81 14.12M15.54 16.5L16.96 15.08L20.15 18.27L18.73 19.69L15.54 16.5M7.65 7.65L9.06 6.24L6.24 9.06L7.65 7.65Z"/>
-                        </svg>
-                    </button>
+                    <span>🚀 LAUNCH ROCKET</span>
+                    <svg class="rocket-icon" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M2.81 14.12L5.64 11.29L8.17 10.79C11.39 6.41 17.55 5.94 19.78 8.17C22.01 10.4 21.54 16.56 17.16 19.78L16.66 22.31L13.83 19.48L14.04 17.17C11.39 19.52 7.64 19.75 5.64 17.75C3.64 15.75 3.87 12 6.22 9.35L8.53 9.56L5.7 12.39L2.81 14.12M15.54 16.5L16.96 15.08L20.15 18.27L18.73 19.69L15.54 16.5M7.65 7.65L9.06 6.24L6.24 9.06L7.65 7.65Z"/>
+                    </svg>
+                </button>
+
                 </div>
             </div>
         </div>
         
         <!-- Spaceship SVG -->
+<!-- Replace the existing spaceship-container section -->
         <div class="spaceship-container">
-            <svg class="spaceship" viewBox="0 0 200 100">
+            <svg class="spaceship" viewBox="0 0 120 300" width="120" height="300">
                 <defs>
-                    <linearGradient id="spaceshipGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#64b5f6"/>
+                    <linearGradient id="rocketBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#e3f2fd"/>
+                        <stop offset="50%" style="stop-color:#64b5f6"/>
                         <stop offset="100%" style="stop-color:#2196f3"/>
                     </linearGradient>
+                    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ff6b35"/>
+                        <stop offset="50%" style="stop-color:#f44336"/>
+                        <stop offset="100%" style="stop-color:#ff9800"/>
+                    </linearGradient>
                 </defs>
-                <path d="M20,50 L60,30 L140,40 L180,50 L140,60 L60,70 Z" fill="url(#spaceshipGradient)" stroke="#fff" stroke-width="1"/>
-                <circle cx="160" cy="50" r="8" fill="#ff4444"/>
-                <path class="thrust" d="M20,50 L5,45 L5,55 Z" fill="#ff6b35"/>
+                
+                <!-- Rocket Body -->
+                <ellipse cx="60" cy="50" rx="25" ry="40" fill="url(#rocketBodyGrad)" stroke="#1565c0" stroke-width="2"/>
+                <rect x="35" y="90" width="50" height="120" fill="url(#rocketBodyGrad)" stroke="#1565c0" stroke-width="2"/>
+                
+                <!-- Rocket Fins -->
+                <polygon points="35,180 20,220 35,210" fill="#1565c0"/>
+                <polygon points="85,180 100,220 85,210" fill="#1565c0"/>
+                
+                <!-- Window -->
+                <circle cx="60" cy="70" r="12" fill="#0d47a1" stroke="#fff" stroke-width="2"/>
+                <circle cx="60" cy="70" r="8" fill="#64b5f6" opacity="0.7"/>
+                
+                <!-- Exhaust Flames (Multiple) -->
+                <g id="rocketFlames">
+                    <ellipse id="flame1" cx="45" cy="220" rx="8" ry="25" fill="url(#flameGrad)" opacity="0.9"/>
+                    <ellipse id="flame2" cx="60" cy="225" rx="12" ry="35" fill="url(#flameGrad)" opacity="0.8"/>
+                    <ellipse id="flame3" cx="75" cy="220" rx="8" ry="25" fill="url(#flameGrad)" opacity="0.9"/>
+                </g>
+                
+                <!-- Smoke/Exhaust Group -->
+                <g id="rocketSmoke"></g>
             </svg>
         </div>
+
     </section>
 
 
