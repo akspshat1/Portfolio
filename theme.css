@@ -1,0 +1,123 @@
+/* Space Theme Variables and Color Palette */
+:root {
+  /* Deep Space Colors */
+  --space-black: #0a0a0f;
+  --space-dark: #1a1a2e;
+  --space-purple: #16213e;
+  --space-blue: #0f3460;
+  --space-cyan: #00d4ff;
+  --space-nebula: #533a7b;
+  
+  /* Cosmic Accents */
+  --cosmic-pink: #ff006e;
+  --cosmic-orange: #ff4500;
+  --cosmic-gold: #ffd700;
+  --cosmic-silver: #c0c0c0;
+  --cosmic-white: #ffffff;
+  
+  /* Gradients */
+  --nebula-gradient: linear-gradient(135deg, #0f3460 0%, #533a7b 50%, #16213e 100%);
+  --cosmic-gradient: linear-gradient(45deg, #ff006e 0%, #00d4ff 50%, #ffd700 100%);
+  --space-gradient: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);
+  
+  /* Glows and Effects */
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.6);
+  --glow-pink: 0 0 20px rgba(255, 0, 110, 0.6);
+  --glow-gold: 0 0 20px rgba(255, 215, 0, 0.6);
+  --glow-white: 0 0 30px rgba(255, 255, 255, 0.8);
+  
+  /* Typography */
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-xxl: 4rem;
+  
+  /* Timing */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-cosmic: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--space-gradient);
+  color: var(--cosmic-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Selection Styling */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: var(--cosmic-white);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cosmic-gradient);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--space-cyan);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus States for Accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--space-cyan);
+  outline-offset: 2px;
+  box-shadow: var(--glow-cyan);
+}
+
+/* Skip Links for Screen Readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--space-dark);
+  color: var(--cosmic-white);
+  padding: 8px;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
