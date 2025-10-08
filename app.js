@@ -680,7 +680,7 @@ Best regards,`);
     }
 
     handleDownloadCV() {
-        const resumeUrl = 'https://drive.google.com/file/d/1kwI9QysauX8PpAYEZUW2nEeGizCuzbix/view?usp=drive_link';
+        const resumeUrl = 'https://drive.google.com/file/d/1x2S8Oq6xfviXNTRPzcyaSfQiVdscuMKD/view?usp=drive_link';
         window.open(resumeUrl, '_blank');
         this.showNotification('Opening resume in new tab! 🚀', 'success');
         
