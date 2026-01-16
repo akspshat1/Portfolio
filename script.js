@@ -914,14 +914,17 @@ class SmartHeader {
 }
 
 // ===== HAMBURGER MENU (Mobile Navigation) =====
+// ===== HAMBURGER MENU (Mobile Navigation) =====
 class MobileMenu {
     constructor() {
         this.nav = document.querySelector('nav .container');
-        this.menu = document.querySelector('nav ul');
-        if (!this.nav || !this.menu) return;
+        this.originalMenu = document.querySelector('nav ul');
+        if (!this.nav || !this.originalMenu) return;
 
         this.isOpen = false;
         this.createHamburger();
+        this.createSidebar(); // New sidebar method
+        this.createOverlay();
         this.setupEventListeners();
     }
 
@@ -936,26 +939,54 @@ class MobileMenu {
             <span class="hamburger-line"></span>
         `;
 
-        // Insert before theme toggle or at end
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            this.nav.insertBefore(this.hamburger, themeToggle);
-        } else {
-            this.nav.appendChild(this.hamburger);
-        }
+        // Insert at the beginning (left side) of nav container
+        this.nav.insertBefore(this.hamburger, this.nav.firstChild);
+    }
+
+    createSidebar() {
+        // Create independent sidebar
+        this.sidebar = document.createElement('div');
+        this.sidebar.className = 'mobile-sidebar';
+
+        // Clone links from original menu
+        const scrollOffset = 60; // Helper for scroll adjustment
+
+        this.originalMenu.querySelectorAll('a').forEach(link => {
+            const sidebarLink = document.createElement('a');
+            sidebarLink.href = link.href;
+            sidebarLink.textContent = link.textContent;
+            sidebarLink.className = 'mobile-sidebar-link';
+
+            // Handle smooth scroll manually if needed or rely on global smooth scroll
+            // We just need to ensure it closes the menu
+
+            this.sidebar.appendChild(sidebarLink);
+        });
+
+        document.body.appendChild(this.sidebar);
+    }
+
+    createOverlay() {
+        // Create overlay for sidebar
+        this.overlay = document.createElement('div');
+        this.overlay.className = 'sidebar-overlay';
+        document.body.appendChild(this.overlay);
     }
 
     setupEventListeners() {
         this.hamburger.addEventListener('click', () => this.toggle());
 
-        // Close menu when clicking a link
-        this.menu.querySelectorAll('a').forEach(link => {
+        // Close menu when clicking a link in the NEW sidebar
+        this.sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => this.close());
         });
 
-        // Close menu on outside click
-        document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.nav.contains(e.target)) {
+        // Close menu on overlay click
+        this.overlay.addEventListener('click', () => this.close());
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
                 this.close();
             }
         });
@@ -968,14 +999,16 @@ class MobileMenu {
     open() {
         this.isOpen = true;
         this.hamburger.classList.add('active');
-        this.menu.classList.add('mobile-open');
+        this.sidebar.classList.add('mobile-open'); // Open sidebar
+        this.overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     close() {
         this.isOpen = false;
         this.hamburger.classList.remove('active');
-        this.menu.classList.remove('mobile-open');
+        this.sidebar.classList.remove('mobile-open'); // Close sidebar
+        this.overlay.classList.remove('active');
         document.body.style.overflow = '';
     }
 }
@@ -1018,72 +1051,11 @@ class TouchFeedback {
 }
 
 // ===== SWIPE GESTURES (Project Cards) =====
+// DISABLED: Replaced with native CSS Scroll Snap for better performance
 class SwipeGestures {
     constructor() {
-        this.projectsGrid = document.querySelector('.projects-grid');
-        if (!this.projectsGrid) return;
-
-        this.cards = this.projectsGrid.querySelectorAll('.project-card');
-        this.currentIndex = 0;
-        this.startX = 0;
-        this.isSwiping = false;
-
-        // Only enable on mobile
-        if (window.innerWidth > 768) return;
-
-        this.setupMobileView();
-        this.setupEventListeners();
-    }
-
-    setupMobileView() {
-        // Add swipe indicator
-        this.indicator = document.createElement('div');
-        this.indicator.className = 'swipe-indicator';
-        this.cards.forEach((_, i) => {
-            const dot = document.createElement('span');
-            dot.className = i === 0 ? 'dot active' : 'dot';
-            this.indicator.appendChild(dot);
-        });
-        this.projectsGrid.parentNode.appendChild(this.indicator);
-    }
-
-    setupEventListeners() {
-        this.projectsGrid.addEventListener('touchstart', (e) => {
-            this.startX = e.touches[0].clientX;
-            this.isSwiping = true;
-        }, { passive: true });
-
-        this.projectsGrid.addEventListener('touchmove', (e) => {
-            if (!this.isSwiping) return;
-        }, { passive: true });
-
-        this.projectsGrid.addEventListener('touchend', (e) => {
-            if (!this.isSwiping) return;
-
-            const endX = e.changedTouches[0].clientX;
-            const diff = this.startX - endX;
-
-            if (Math.abs(diff) > 50) { // Minimum swipe distance
-                if (diff > 0 && this.currentIndex < this.cards.length - 1) {
-                    this.currentIndex++;
-                } else if (diff < 0 && this.currentIndex > 0) {
-                    this.currentIndex--;
-                }
-                this.scrollToCard();
-            }
-
-            this.isSwiping = false;
-        });
-    }
-
-    scrollToCard() {
-        const card = this.cards[this.currentIndex];
-        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
-        // Update indicator
-        this.indicator.querySelectorAll('.dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === this.currentIndex);
-        });
+        // Native CSS handling is smoother
+        return;
     }
 }
 
