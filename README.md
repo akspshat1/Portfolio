@@ -1,12 +1,9 @@
-# Project Name
+# Portfolio
 
 ## Description
-A simple project that runs directly in the browser.
+A simple portfolio source code.
 
-## Usage
-Just open `index.html` in your web browser.
 
-No build steps or dependencies are required.
 
 ## License
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
