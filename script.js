@@ -1,2797 +1,1176 @@
-/* ================================
-   RICH INDIAN HERITAGE PORTFOLIO
-   Warm · Luxurious · Transcendent
-   ================================ */
-
-/* === FONTS === */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap');
-
-/* ===========================
-   CSS CUSTOM PROPERTIES
-   =========================== */
-:root {
-  /* Rich Warm Indian Palette - Light Mode */
-  --cream: #fdf8f0;
-  --ivory: #faf5eb;
-  --warm-white: #f8f4ec;
-  --saffron: #e07020;
-  --saffron-light: #f4a460;
-  --saffron-glow: rgba(224, 112, 32, 0.15);
-  --maroon: #6b1a1a;
-  --maroon-deep: #4a1010;
-  --maroon-light: #8b2a2a;
-  --gold: #c9a227;
-  --gold-light: #e8d48a;
-  --brown-dark: #2d1810;
-  --brown-soft: #5c4033;
-
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
-
-  /* Typography */
-  --font-display: 'Cinzel', serif;
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Poppins', sans-serif;
-
-  /* Shadows */
-  --shadow-warm: 0 10px 40px rgba(107, 26, 26, 0.1);
-  --shadow-deep: 0 20px 60px rgba(107, 26, 26, 0.15);
-  --shadow-glow: 0 0 60px rgba(224, 112, 32, 0.2);
-
-  /* Theme transition */
-  --theme-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* ===========================
-   DARK MODE - Temple at Night
-   =========================== */
-[data-theme="dark"] {
-  /* Warm deep wine/maroon backgrounds instead of black */
-  --cream: #1f1014;
-  /* Deep wine */
-  --ivory: #2a1519;
-  /* Darker wine */
-  --warm-white: #241418;
-  /* Rich maroon-black */
-  --saffron: #ff8c42;
-  --saffron-light: #ffab70;
-  --saffron-glow: rgba(255, 140, 66, 0.2);
-  --maroon: #150a0c;
-  /* Very deep wine for sections */
-  --maroon-deep: #0f0709;
-  --maroon-light: #3d1a20;
-  --gold: #e8c547;
-  --gold-light: #f5e0a0;
-  --brown-dark: #f5efe6;
-  --brown-soft: #c9a87c;
-
-  /* Dark mode shadows */
-  --shadow-warm: 0 10px 40px rgba(0, 0, 0, 0.3);
-  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 60px rgba(232, 197, 71, 0.15);
-}
-
-/* Dark mode - Hero section fixes */
-[data-theme="dark"] .hero-content h1 {
-  color: #e8d4b8;
-  /* Silver/cream for AKSHAT */
-}
-
-[data-theme="dark"] .hero-content .subtitle {
-  color: #c0b0a0;
-  /* Light silver for subtitle */
-}
-
-[data-theme="dark"] .hero-content .philosophy {
-  color: var(--saffron-light);
-}
-
-/* Dark mode - About section details */
-[data-theme="dark"] .detail-item .label {
-  color: var(--gold);
-}
-
-[data-theme="dark"] .detail-item .value {
-  color: #e8d4b8;
-  /* Silver/cream */
-}
-
-[data-theme="dark"] .about-text h3 {
-  color: #e8d4b8;
-}
-
-[data-theme="dark"] .about-text p {
-  color: #c0b0a0;
-}
-
-[data-theme="dark"] .about-details {
-  border-top-color: rgba(232, 197, 71, 0.3);
-}
-
-[data-theme="dark"] .btn-primary {
-  background: var(--gold);
-  color: #1a0d0d;
-}
-
-[data-theme="dark"] .btn-primary:hover {
-  background: var(--gold-light);
-  color: #1a0d0d;
-}
-
-[data-theme="dark"] .btn-secondary {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-[data-theme="dark"] .btn-secondary:hover {
-  background: var(--gold);
-  color: #1a0d0d;
-}
-
-/* Dark mode - Section headers */
-[data-theme="dark"] .section-header h2 {
-  color: var(--gold) !important;
-  /* Bright gold for main headings */
-}
-
-[data-theme="dark"] .section-header .overline {
-  color: var(--saffron-light);
-}
-
-[data-theme="dark"] .section-header p {
-  color: #d0c0b0;
-  /* Brighter silver */
-}
-
-/* Dark mode - Hobby cards */
-[data-theme="dark"] .hobby-card {
-  background: rgba(45, 21, 21, 0.8);
-  border-color: rgba(232, 197, 71, 0.3);
-}
-
-[data-theme="dark"] .hobby-card h3 {
-  color: #e8d4b8;
-}
-
-[data-theme="dark"] .hobby-card p {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .hobby-icon svg {
-  color: var(--gold);
-}
-
-/* Dark mode - Project cards */
-[data-theme="dark"] .project-card {
-  background: rgba(45, 21, 21, 0.8);
-  border-color: rgba(232, 197, 71, 0.2);
-}
-
-[data-theme="dark"] .project-card h3 {
-  color: #e8d4b8;
-}
-
-[data-theme="dark"] .project-card p {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .tag {
-  background: rgba(232, 197, 71, 0.15);
-  color: var(--gold);
-}
-
-/* Dark mode - Skill items */
-[data-theme="dark"] .skill-category h3 {
-  color: var(--gold);
-}
-
-[data-theme="dark"] .skill-item {
-  background: rgba(45, 21, 21, 0.6);
-  color: #e8d4b8;
-  border-color: rgba(232, 197, 71, 0.2);
-}
-
-/* Dark mode - Contact section */
-[data-theme="dark"] .contact-info h3 {
-  color: #e8d4b8;
-}
-
-[data-theme="dark"] .contact-info p {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .contact-item span {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .contact-form label {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .contact-form input,
-[data-theme="dark"] .contact-form textarea {
-  background: rgba(45, 21, 21, 0.8);
-  border-color: rgba(232, 197, 71, 0.3);
-  color: #e8d4b8;
-}
-
-[data-theme="dark"] .contact-form input::placeholder,
-[data-theme="dark"] .contact-form textarea::placeholder {
-  color: #8a7a6a;
-}
-
-[data-theme="dark"] .submit-btn {
-  background: var(--gold);
-  color: #1a0d0d;
-}
-
-/* Dark mode - Social links (GH, LI) and Resume button */
-[data-theme="dark"] .social-link {
-  border-color: rgba(232, 197, 71, 0.5);
-  color: #e8d4b8;
-  background: rgba(45, 21, 21, 0.5);
-}
-
-[data-theme="dark"] .social-link:hover {
-  background: var(--gold);
-  color: #1a0d0d;
-  border-color: var(--gold);
-}
-
-[data-theme="dark"] .resume-btn {
-  border-color: rgba(232, 197, 71, 0.5);
-  color: #e8d4b8;
-  background: rgba(45, 21, 21, 0.5);
-}
-
-[data-theme="dark"] .resume-btn:hover {
-  background: var(--gold);
-  color: #1a0d0d;
-  border-color: var(--gold);
-}
-
-/* Dark mode - Footer */
-[data-theme="dark"] footer {
-  background: #0d0505;
-}
-
-[data-theme="dark"] footer p {
-  color: #b8a890;
-}
-
-/* Dark mode - Scroll indicator */
-[data-theme="dark"] .scroll-indicator span {
-  color: #b8a890;
-}
-
-[data-theme="dark"] .scroll-indicator .line {
-  background: linear-gradient(to bottom, var(--gold), transparent);
-}
-
-/* ===========================
-   GLOBAL RESET & BASE STYLES
-   =========================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-  /* Ensure content starts below header */
-}
-
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--brown-dark);
-  line-height: 1.9;
-  overflow-x: hidden;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cream);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--saffron), var(--maroon));
-  border-radius: 10px;
-}
-
-/* ===========================
-   AMBIENT WARM BACKGROUND
-   =========================== */
-.ambient-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse at 20% 20%, rgba(224, 112, 32, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(107, 26, 26, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.04) 0%, transparent 60%),
-    linear-gradient(180deg, var(--cream) 0%, var(--ivory) 50%, var(--warm-white) 100%);
-}
-
-/* Floating Particles */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--saffron);
-  border-radius: 50%;
-  opacity: 0;
-  animation: float-up 20s infinite;
-}
-
-@keyframes float-up {
-  0% {
-    opacity: 0;
-    transform: translateY(100vh) scale(0);
-  }
-
-  10% {
-    opacity: 0.4;
-  }
-
-  90% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100vh) scale(1);
-  }
-}
-
-/* ===========================
-   AUDIO CONTROL
-   =========================== */
-.audio-control {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: rgba(253, 248, 240, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(107, 26, 26, 0.15);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: var(--shadow-warm);
-}
-
-.audio-control:hover {
-  border-color: var(--saffron);
-  box-shadow: var(--shadow-glow);
-}
-
-.audio-control .icon {
-  font-size: 1.2rem;
-  color: var(--saffron);
-}
-
-.audio-control span {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--maroon);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-/* ===========================
-   NAVIGATION
-   =========================== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.8rem var(--spacing-md);
-  background: rgba(253, 248, 240, 0.9);
-  backdrop-filter: blur(20px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(107, 26, 26, 0.08);
-}
-
-nav .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav .logo {
-  font-family: var(--font-display), 'Nirmala UI', 'Arial', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--maroon);
-  text-decoration: none;
-  letter-spacing: 0;
-  /* Normal spacing for Hindi */
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-nav a {
-  color: var(--brown-soft);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  position: relative;
-  padding: 0.5rem 0;
-  transition: color 0.4s ease;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--saffron), var(--maroon));
-  transition: width 0.4s ease;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--maroon);
-}
-
-nav a:hover::after,
-nav a.active::after {
-  width: 100%;
-}
-
-/* ===========================
-   THEME TOGGLE BUTTON
-   =========================== */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: var(--theme-transition), transform 0.3s ease;
-  margin-left: var(--spacing-sm);
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
-}
-
-.theme-toggle .sun-icon,
-.theme-toggle .moon-icon {
-  position: absolute;
-  font-size: 1.3rem;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-.theme-toggle .sun-icon {
-  color: var(--gold);
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.theme-toggle .moon-icon {
-  color: var(--gold);
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.5);
-}
-
-/* Dark mode toggle states */
-[data-theme="dark"] .theme-toggle .sun-icon {
-  opacity: 0;
-  transform: rotate(90deg) scale(0.5);
-}
-
-[data-theme="dark"] .theme-toggle .moon-icon {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-/* Dark mode nav adjustments */
-[data-theme="dark"] nav {
-  background: rgba(26, 13, 13, 0.95);
-  border-bottom-color: rgba(232, 197, 71, 0.15);
-}
-
-[data-theme="dark"] nav .logo {
-  color: var(--gold);
-}
-
-[data-theme="dark"] nav a:hover,
-[data-theme="dark"] nav a.active {
-  color: var(--gold);
-}
-
-/* Smooth transitions for all elements */
-body,
-nav,
-section,
-.project-card,
-.hobby-card,
-.skill-category,
-.experience-item,
-.contact-form,
-.modal-content,
-footer {
-  transition: var(--theme-transition);
-}
-
-/* ===========================
-   HERO SECTION
-   =========================== */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--spacing-xl) var(--spacing-md);
-  position: relative;
-  background:
-    radial-gradient(ellipse at center, var(--saffron-glow) 0%, transparent 60%),
-    var(--cream);
-  color: var(--maroon);
-}
-
-.hero-content {
-  max-width: 900px;
-  z-index: 1;
-}
-
-.hero-content .sanskrit {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-style: italic;
-  color: var(--saffron);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: 0.2em;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 0.3s;
-}
-
-.hero-content h1 {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 500;
-  color: var(--maroon);
-  margin-bottom: var(--spacing-xs);
-  letter-spacing: 0.15em;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 0.8s;
-  text-shadow: none;
-}
-
-.hero-content .subtitle {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--brown-soft);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: 0.1em;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 1.2s;
-}
-
-.hero-content .philosophy {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--saffron);
-  margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 1.6s;
-}
-
-.hero-cta {
-  display: flex;
-  gap: var(--spacing-sm);
-  justify-content: center;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 2s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Buttons */
-.btn {
-  padding: 1.1rem 2.5rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.btn-primary {
-  background: var(--maroon);
-  color: var(--cream);
-  font-weight: 400;
-}
-
-.btn-primary:hover {
-  background: var(--maroon-light);
-  color: var(--cream);
-  box-shadow: var(--shadow-deep);
-  transform: translateY(-3px);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--maroon);
-  border: 2px solid var(--maroon);
-}
-
-.btn-secondary:hover {
-  background: var(--maroon);
-  color: var(--cream);
-  border-color: var(--maroon);
-  transform: translateY(-3px);
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards, pulse 2s ease-in-out infinite;
-  animation-delay: 2.5s, 2.5s;
-}
-
-.scroll-indicator .line {
-  width: 1px;
-  height: 50px;
-  background: linear-gradient(to bottom, var(--maroon), transparent);
-  margin: 0 auto var(--spacing-xs);
-  opacity: 1;
-}
-
-.scroll-indicator span {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--brown-soft);
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-/* ===========================
-   SECTION STYLES
-   =========================== */
-section {
-  padding: var(--spacing-xl) var(--spacing-md);
-  position: relative;
-}
-
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.section-header .overline {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  color: var(--saffron);
-  margin-bottom: var(--spacing-xs);
-}
-
-.section-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: var(--maroon);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--spacing-sm);
-}
-
-.section-header .divider {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--saffron), transparent);
-  margin: 0 auto var(--spacing-sm);
-}
-
-.section-header p {
-  font-family: var(--font-heading);
-  color: var(--brown-soft);
-  font-size: 1.15rem;
-  font-style: italic;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ===========================
-   ABOUT SECTION - MAROON
-   =========================== */
-#about {
-  background: var(--maroon);
-  color: var(--cream);
-}
-
-#about .section-header .overline {
-  color: var(--saffron-light);
-}
-
-#about .section-header h2 {
-  color: var(--cream);
-}
-
-#about .section-header p {
-  color: rgba(253, 248, 240, 0.7);
-}
-
-#about .about-text h3 {
-  color: var(--cream);
-}
-
-#about .about-text p {
-  color: rgba(253, 248, 240, 0.8);
-}
-
-#about .detail-item .label {
-  color: var(--saffron-light);
-}
-
-#about .detail-item .value {
-  color: var(--cream);
-}
-
-#about .about-details {
-  border-top-color: rgba(244, 164, 96, 0.3);
-}
-
-#about .about-image .frame {
-  border-color: rgba(244, 164, 96, 0.3);
-}
-
-#about .about-image .frame::before,
-#about .about-image .frame::after {
-  border-color: var(--saffron-light);
-}
-
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: var(--spacing-lg);
-  align-items: center;
-}
-
-.about-image {
-  position: relative;
-}
-
-.about-image .frame {
-  position: relative;
-  padding: 1.5rem;
-  border: 1px solid rgba(224, 112, 32, 0.3);
-}
-
-.about-image .frame::before,
-.about-image .frame::after {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--saffron);
-}
-
-.about-image .frame::before {
-  top: -8px;
-  left: -8px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.about-image .frame::after {
-  bottom: -8px;
-  right: -8px;
-  border-left: none;
-  border-top: none;
-}
-
-.about-image img {
-  width: 100%;
-  filter: sepia(10%) contrast(1.05);
-}
-
-.about-text h3 {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: var(--maroon);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: 0.05em;
-}
-
-.about-text p {
-  color: var(--brown-soft);
-  margin-bottom: var(--spacing-sm);
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.9;
-}
-
-.about-details {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(224, 112, 32, 0.2);
-}
-
-.detail-item .label {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--saffron);
-  margin-bottom: 0.3rem;
-}
-
-.detail-item .value {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  color: var(--maroon);
-}
-
-/* ===========================
-   PROJECTS SECTION - IVORY
-   =========================== */
-#projects {
-  background: var(--ivory);
-  color: var(--brown-dark);
-}
-
-#projects .section-header .overline {
-  color: var(--saffron);
-}
-
-#projects .section-header h2 {
-  color: var(--maroon);
-}
-
-#projects .section-header p {
-  color: var(--brown-soft);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-md);
-}
-
-.project-card {
-  background: var(--cream);
-  border: 1px solid rgba(107, 26, 26, 0.15);
-  padding: var(--spacing-md);
-  transition: all 0.5s ease;
-}
-
-.project-card:hover {
-  border-color: rgba(107, 26, 26, 0.3);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-deep);
-  background: var(--warm-white);
-}
-
-.project-card .number {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  color: rgba(107, 26, 26, 0.2);
-  margin-bottom: var(--spacing-xs);
-}
-
-.project-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--maroon);
-  margin-bottom: var(--spacing-xs);
-  letter-spacing: 0.03em;
-}
-
-.project-card p {
-  color: var(--brown-soft);
-  font-size: 0.95rem;
-  margin-bottom: var(--spacing-sm);
-  font-weight: 300;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.tag {
-  padding: 0.4rem 1rem;
-  background: rgba(107, 26, 26, 0.1);
-  color: var(--maroon);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.project-link {
-  color: var(--saffron);
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.project-link:hover {
-  color: var(--maroon);
-}
-
-/* ===========================
-   EXPERIENCE SECTION - MAROON
-   =========================== */
-#experience {
-  background: var(--maroon);
-  color: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-
-#experience .section-header .overline {
-  color: var(--saffron-light);
-}
-
-#experience .section-header h2 {
-  color: var(--cream);
-}
-
-#experience .section-header p {
-  color: rgba(253, 248, 240, 0.7);
-}
-
-.experience-container {
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Experience Items - Staggered Layout */
-.experience-flow {
-  position: relative;
-  z-index: 1;
-}
-
-.experience-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 4rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Alternating layout */
-.experience-item:nth-child(odd) {
-  justify-content: flex-start;
-  padding-left: 5%;
-}
-
-.experience-item:nth-child(even) {
-  justify-content: flex-end;
-  padding-right: 5%;
-}
-
-/* The Agni (Fire) Block - HAWAN GIF */
-.agni-block {
-  position: relative;
-  width: 100px;
-  height: 120px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  z-index: 2;
-}
-
-.hawan-gif {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 15px rgba(255, 100, 0, 0.5));
-}
-
-.experience-item:nth-child(odd) .agni-block {
-  order: 1;
-  margin-right: 2rem;
-}
-
-.experience-item:nth-child(even) .agni-block {
-  order: 2;
-  margin-left: 2rem;
-}
-
-.experience-item:nth-child(odd) .exp-content {
-  order: 2;
-}
-
-.experience-item:nth-child(even) .exp-content {
-  order: 1;
-}
-
-/* Hawan Kund - Sacred Fire Pit */
-.agni-block .kund {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 55px;
-  height: 20px;
-  background: linear-gradient(180deg,
-      #8b4513 0%,
-      #654321 30%,
-      #4a3520 60%,
-      #3d2914 100%);
-  border-radius: 3px 3px 12px 12px;
-  box-shadow:
-    0 4px 15px rgba(139, 69, 19, 0.5),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.4),
-    inset 0 2px 4px rgba(255, 140, 0, 0.3);
-}
-
-/* Glowing embers inside kund */
-.agni-block .kund::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 10px;
-  background: radial-gradient(ellipse,
-      rgba(255, 100, 0, 0.8) 0%,
-      rgba(255, 60, 0, 0.5) 50%,
-      rgba(139, 69, 19, 0.3) 100%);
-  border-radius: 50%;
-  animation: embersGlow 1s ease-in-out infinite alternate;
-}
-
-@keyframes embersGlow {
-  0% {
-    opacity: 0.6;
-    filter: brightness(0.8);
-  }
-
-  100% {
-    opacity: 1;
-    filter: brightness(1.2);
-  }
-}
-
-/* MAIN FIRE - Outer flame */
-.agni-block .ember-glow {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 35px;
-  height: 65px;
-  background: linear-gradient(0deg,
-      rgba(255, 80, 0, 1) 0%,
-      rgba(255, 140, 0, 0.9) 25%,
-      rgba(255, 180, 50, 0.7) 50%,
-      rgba(255, 220, 100, 0.4) 75%,
-      transparent 100%);
-  clip-path: polygon(50% 0%, 15% 100%, 85% 100%);
-  animation: fireRoar 0.3s ease-in-out infinite alternate;
-  filter: blur(2px);
-}
-
-/* Inner flame - bright core */
-.agni-block .ember-glow::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 50px;
-  background: linear-gradient(0deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 200, 0.9) 30%,
-      rgba(255, 200, 50, 0.6) 60%,
-      transparent 100%);
-  clip-path: polygon(50% 0%, 20% 100%, 80% 100%);
-  animation: coreFlicker 0.2s ease-in-out infinite alternate;
-}
-
-/* Second flame layer - dancing fire */
-.agni-block .ember-glow::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 30%;
-  width: 15px;
-  height: 40px;
-  background: linear-gradient(0deg,
-      rgba(255, 120, 0, 0.9) 0%,
-      rgba(255, 180, 50, 0.6) 50%,
-      transparent 100%);
-  clip-path: polygon(50% 0%, 10% 100%, 90% 100%);
-  animation: sideFlame 0.4s ease-in-out infinite alternate-reverse;
-  transform-origin: bottom center;
-}
-
-/* Intense ambient glow */
-.agni-block::before {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 80px;
-  background: radial-gradient(ellipse at center bottom,
-      rgba(255, 100, 0, 0.4) 0%,
-      rgba(255, 60, 0, 0.2) 30%,
-      rgba(255, 140, 0, 0.1) 50%,
-      transparent 70%);
-  border-radius: 50%;
-  animation: glowPulse 1.5s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes fireRoar {
-  0% {
-    transform: translateX(-50%) scaleX(0.9) scaleY(1);
-    filter: blur(2px) brightness(1);
-  }
-
-  100% {
-    transform: translateX(-50%) scaleX(1.1) scaleY(1.05);
-    filter: blur(2px) brightness(1.15);
-  }
-}
-
-@keyframes coreFlicker {
-  0% {
-    opacity: 0.85;
-    transform: translateX(-50%) scaleY(0.95);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) scaleY(1.08);
-  }
-}
-
-@keyframes sideFlame {
-  0% {
-    transform: rotate(-10deg) scaleY(0.9);
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: rotate(10deg) scaleY(1.1);
-    opacity: 1;
-  }
-}
-
-@keyframes glowPulse {
-
-  0%,
-  100% {
-    opacity: 0.7;
-    transform: translateX(-50%) scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.15);
-  }
-}
-
-/* SMOKE RISING */
-.agni-block .spark {
-  position: absolute;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: radial-gradient(circle,
-      rgba(100, 80, 60, 0.5) 0%,
-      rgba(80, 60, 40, 0.2) 50%,
-      transparent 100%);
-  border-radius: 50%;
-  opacity: 0;
-  animation: smokeRise 4s ease-out infinite;
-  filter: blur(2px);
-}
-
-.agni-block .spark:nth-child(2) {
-  animation-delay: 1s;
-  left: 45%;
-}
-
-.agni-block .spark:nth-child(3) {
-  animation-delay: 2s;
-  left: 55%;
-}
-
-.agni-block .spark:nth-child(4) {
-  animation-delay: 0.5s;
-  left: 48%;
-  width: 6px;
-  height: 6px;
-}
-
-@keyframes smokeRise {
-  0% {
-    bottom: 70px;
-    opacity: 0;
-    transform: translateX(-50%) scale(0.5);
-  }
-
-  15% {
-    opacity: 0.5;
-  }
-
-  100% {
-    bottom: 140px;
-    opacity: 0;
-    transform: translateX(calc(-50% + 15px)) scale(1.5);
-  }
-}
-
-/* Year Badge */
-.agni-block .year-badge {
-  position: absolute;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--gold-light);
-  letter-spacing: 0.15em;
-  white-space: nowrap;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Experience Content */
-.exp-content {
-  max-width: 450px;
-  background: #7d2020;
-  padding: 1.8rem 2rem;
-  border: 1px solid rgba(244, 164, 96, 0.2);
-  transition: all 0.4s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.exp-content::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--saffron-light), var(--gold-light), var(--saffron-light));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.exp-content:hover {
-  border-color: rgba(244, 164, 96, 0.5);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
-  background: #8b2525;
-}
-
-.exp-content:hover::before {
-  opacity: 1;
-}
-
-.experience-item:nth-child(odd) .exp-content {
-  text-align: left;
-}
-
-.experience-item:nth-child(even) .exp-content {
-  text-align: right;
-}
-
-.exp-content h3 {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--cream);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.03em;
-}
-
-.exp-company {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  color: var(--saffron-light);
-  font-style: italic;
-  margin-bottom: 0.8rem;
-}
-
-.exp-desc {
-  color: rgba(253, 248, 240, 0.8);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-
-  .experience-item,
-  .experience-item:nth-child(odd),
-  .experience-item:nth-child(even) {
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    text-align: center;
-  }
-
-  .experience-item:nth-child(odd) .agni-block,
-  .experience-item:nth-child(even) .agni-block {
-    order: 1;
-    margin: 0 0 1.5rem 0;
-  }
-
-  .experience-item:nth-child(odd) .exp-content,
-  .experience-item:nth-child(even) .exp-content {
-    order: 2;
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .experience-path {
-    display: none;
-  }
-}
-
-/* ===========================
-   SKILLS SECTION - IVORY
-   =========================== */
-#skills {
-  background: var(--ivory);
-  color: var(--brown-dark);
-}
-
-#skills .section-header .overline {
-  color: var(--saffron);
-}
-
-#skills .section-header h2 {
-  color: var(--maroon);
-}
-
-#skills .section-header p {
-  color: var(--brown-soft);
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-}
-
-.skill-category h3 {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--saffron);
-  letter-spacing: 0.1em;
-  margin-bottom: var(--spacing-sm);
-  padding-bottom: var(--spacing-xs);
-  border-bottom: 1px solid rgba(224, 112, 32, 0.3);
-}
-
-.skill-item {
-  padding: 0.7rem 0;
-  color: var(--brown-soft);
-  font-size: 0.9rem;
-  font-weight: 300;
-  border-bottom: 1px solid rgba(107, 26, 26, 0.08);
-  transition: all 0.3s ease;
-}
-
-.skill-item:hover {
-  color: var(--maroon);
-  padding-left: 0.5rem;
-  border-bottom-color: var(--saffron);
-}
-
-/* ===========================
-   CONTACT SECTION
-   =========================== */
-#contact {
-  background: var(--ivory);
-}
-
-.contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-lg);
-}
-
-.contact-info h3 {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: var(--maroon);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: 0.05em;
-}
-
-.contact-info p {
-  color: var(--brown-soft);
-  font-weight: 300;
-  margin-bottom: var(--spacing-md);
-  line-height: 1.8;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--brown-soft);
-  margin-bottom: var(--spacing-sm);
-  font-size: 0.95rem;
-}
-
-.contact-item .icon {
-  color: var(--saffron);
-  font-size: 1.2rem;
-}
-
-.social-links {
-  display: flex;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
-}
-
-.social-link {
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(107, 26, 26, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--maroon);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.4s ease;
-}
-
-.social-link:hover {
-  background: var(--maroon);
-  color: var(--cream);
-  border-color: var(--maroon);
-}
-
-/* Contact actions - GH, LI, and Resume button layout */
-.contact-actions {
-  display: flex;
-  flex-direction: column;
-  margin-top: var(--spacing-md);
-}
-
-.resume-btn {
-  width: 100%;
-  max-width: 116px;
-  /* Same width as GH + LI + gap (50 + 50 + 16) */
-  padding: 0.8rem 1rem;
-  margin-top: var(--spacing-sm);
-  background: transparent;
-  border: 1px solid rgba(107, 26, 26, 0.2);
-  color: var(--maroon);
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.resume-btn:hover {
-  background: var(--maroon);
-  color: var(--cream);
-  border-color: var(--maroon);
-}
-
-.contact-form {
-  background: var(--cream);
-  padding: var(--spacing-md);
-  border: 1px solid rgba(107, 26, 26, 0.1);
-  box-shadow: var(--shadow-warm);
-}
-
-.form-group {
-  margin-bottom: var(--spacing-sm);
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--saffron);
-  margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 1rem;
-  background: var(--warm-white);
-  border: 1px solid rgba(107, 26, 26, 0.1);
-  color: var(--brown-dark);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--saffron);
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 1.2rem;
-  background: var(--maroon);
-  color: var(--cream);
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.submit-btn:hover {
-  background: var(--maroon-light);
-  box-shadow: var(--shadow-deep);
-}
-
-/* ===========================
-   FOOTER
-   =========================== */
-footer {
-  background: var(--maroon-deep);
-  text-align: center;
-  padding: var(--spacing-lg);
-}
-
-footer .sanskrit {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  color: var(--saffron-light);
-  margin-bottom: var(--spacing-xs);
-}
-
-footer p {
-  color: rgba(253, 248, 240, 0.5);
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-}
-
-/* ===========================
-   RESPONSIVE
-   =========================== */
-@media (max-width: 1024px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  nav .container {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  .about-content,
-  .contact-content,
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .audio-control {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.8rem 1rem;
-  }
-}
-
-/* ===========================
-   FADE IN ANIMATION
-   =========================== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===========================
-   HOBBIES SECTION - MAROON
-   =========================== */
-#hobbies {
-  background: var(--maroon);
-  color: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle texture */
-#hobbies::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(var(--saffron-light) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.05;
-  pointer-events: none;
-}
-
-#hobbies .section-header .overline {
-  color: var(--saffron-light);
-  text-shadow: none;
-}
-
-#hobbies .section-header h2 {
-  color: var(--cream);
-  text-shadow: none;
-}
-
-#hobbies .section-header p {
-  color: rgba(253, 248, 240, 0.7);
-}
-
-#hobbies .divider {
-  background: linear-gradient(90deg, transparent, var(--saffron-light), transparent);
-}
-
-.hobbies-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-  position: relative;
-  z-index: 1;
-}
-
-.hobby-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(244, 164, 96, 0.2);
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  border-radius: 30px;
-  /* Highly rounded majesty */
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  /* Inner light ring */
-}
-
-/* Internal Gold Border (Temple-like) */
-.hobby-card::after {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  border-radius: 24px;
-  border: 1px solid rgba(244, 164, 96, 0.2);
-  pointer-events: none;
-  transition: all 0.4s ease;
-}
-
-.hobby-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 15px rgba(244, 164, 96, 0.2);
-}
-
-.hobby-card:hover::after {
-  border-color: rgba(244, 164, 96, 0.5);
-  inset: 12px;
-  /* Border shrinks slightly inwards */
-}
-
-.hobby-icon-wrapper {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Removed circular emphasis, focusing on the icon itself */
-  color: var(--saffron-light);
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-/* Static Majestic Glow instead of rotation */
-.hobby-icon-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, rgba(244, 164, 96, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
-  opacity: 0.5;
-  transition: all 0.4s ease;
-}
-
-.hobby-card:hover .hobby-icon-wrapper {
-  color: var(--cream);
-  transform: scale(1.1);
-}
-
-.hobby-card:hover .hobby-icon-wrapper::before {
-  opacity: 1;
-  width: 90px;
-  height: 90px;
-  background: radial-gradient(circle, rgba(244, 164, 96, 0.4) 0%, transparent 70%);
-}
-
-.hobby-icon {
-  font-size: 2.5rem;
-  line-height: 1;
-  z-index: 1;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.hobby-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: var(--cream);
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.hobby-card p {
-  color: rgba(253, 248, 240, 0.8);
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-/* Responsiveness for Hobbies */
-@media (max-width: 1024px) {
-  .hobbies-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .hobbies-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===========================
-   RESUME BUTTON & MODAL
-   =========================== */
-.contact-actions {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  /* Gap between social row and resume button */
-}
-
-.contact-actions .social-links {
-  display: flex;
-  gap: 1rem;
-  /* Gap between social icons */
-}
-
-/* Ensure social links have explicit size if not already set globally */
-.social-link {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(107, 26, 26, 0.2);
-  color: var(--maroon);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
-
-.social-link:hover {
-  background: var(--maroon);
-  color: var(--cream);
-}
-
-.resume-btn {
-  width: 100%;
-  /* Fill the container width */
-  height: 50px;
-  border: 1px solid rgba(107, 26, 26, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  padding: 0;
-  /* Removing side padding to ensure exact width match */
-  color: var(--maroon);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  border-radius: 0;
-}
-
-.resume-btn:hover {
-  background: var(--maroon);
-  color: var(--cream);
-  border-color: var(--maroon);
-  box-shadow: var(--shadow-warm);
-}
-
-.resume-icon {
-  font-size: 1.1rem;
-}
-
-/* Modal Styling - Majestic Hindu Theme */
-/* Modal Styling - Clean Majestic Hindu Theme */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(45, 24, 16, 0.9);
-  backdrop-filter: blur(8px);
-  animation: fadeInModal 0.4s ease;
-}
-
-.modal-content {
-  position: relative;
-  margin: 2% auto;
-  width: 90%;
-  max-width: 1000px;
-  height: 90%;
-  background: var(--ivory);
-  /* Clean Ivory Background */
-  border: 1px solid var(--gold);
-  /* Inner golden border effect */
-  box-shadow:
-    inset 0 0 0 6px var(--ivory),
-    inset 0 0 0 7px rgba(201, 162, 39, 0.5),
-    0 25px 60px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  animation: slideUpModal 0.5s ease;
-}
-
-/* Decorative corners for modal - Refined */
-.modal-content::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 20px;
-  height: 20px;
-  border-top: 2px solid var(--maroon);
-  border-left: 2px solid var(--maroon);
-  pointer-events: none;
-  z-index: 10;
-}
-
-.modal-content::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 20px;
-  height: 20px;
-  border-top: 2px solid var(--maroon);
-  border-right: 2px solid var(--maroon);
-  pointer-events: none;
-  z-index: 10;
-}
-
-.modal-header {
-  padding: 1.2rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(107, 26, 26, 0.1);
-  background: var(--cream);
-}
-
-.modal-header h3 {
-  font-family: var(--font-display);
-  color: var(--maroon);
-  margin: 0;
-  font-size: 1.4rem;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  text-shadow: none;
-}
-
-.close-modal {
-  color: var(--saffron);
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  line-height: 0.8;
-  transition: color 0.3s;
-}
-
-.close-modal:hover {
-  color: var(--maroon);
-  text-shadow: none;
-}
-
-.modal-body {
-  flex: 1;
-  padding: 1rem;
-  background: rgba(253, 248, 240, 0.05);
-}
-
-.modal-body iframe {
-  border: none;
-  background: var(--ivory, #fff);
-  border-radius: 4px;
-}
-
-@keyframes fadeInModal {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUpModal {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Exit Animations */
-.modal.closing {
-  animation: fadeOutModal 0.4s ease forwards;
-}
-
-.modal.closing .modal-content {
-  animation: slideDownModal 0.4s ease forwards;
-}
-
-@keyframes fadeOutModal {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slideDownModal {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  to {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-}
-
-/* Responsive Modal */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 95%;
-    height: 85%;
-    margin: 10% auto;
-  }
-}
-
-/* ===========================
-   GOLD METALLIC ACCENTS
-   Premium shimmer & glow effects
-   =========================== */
-
-/* Gold shimmer animation */
-@keyframes goldShimmer {
-  0% {
-    background-position: -200% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes goldPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 5px rgba(201, 162, 39, 0.3),
-      0 0 10px rgba(201, 162, 39, 0.2),
-      0 0 15px rgba(201, 162, 39, 0.1);
-  }
-
-  50% {
-    box-shadow: 0 0 10px rgba(201, 162, 39, 0.5),
-      0 0 20px rgba(201, 162, 39, 0.3),
-      0 0 30px rgba(201, 162, 39, 0.2);
-  }
-}
-
-@keyframes goldGlow {
-
-  0%,
-  100% {
-    filter: drop-shadow(0 0 3px rgba(201, 162, 39, 0.4));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.7));
-  }
-}
-
-/* Enhanced dividers with gold shimmer */
-.section-header .divider {
-  width: 120px;
-  height: 3px;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--gold-light),
-      var(--gold),
-      var(--gold-light),
-      transparent);
-  background-size: 200% 100%;
-  animation: goldShimmer 3s ease-in-out infinite;
-  margin: 0 auto var(--spacing-sm);
-  border-radius: 2px;
-}
-
-/* Gold accent on section headings - underline removed */
-.section-header h2::after {
-  display: none;
-}
-
-/* Gold shimmer on primary buttons */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid transparent;
-  transition: all 0.4s ease, border-color 0.3s ease;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(201, 162, 39, 0.3),
-      transparent);
-  transition: left 0.6s ease;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-.btn-primary:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 20px rgba(201, 162, 39, 0.3),
-    var(--shadow-deep);
-}
-
-/* Gold border on secondary buttons */
-.btn-secondary {
-  border: 2px solid var(--maroon);
-  position: relative;
-  transition: all 0.4s ease;
-}
-
-.btn-secondary:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 15px rgba(201, 162, 39, 0.25);
-}
-
-/* Gold accents on project cards */
-.project-card {
-  position: relative;
-  border: 1px solid rgba(107, 26, 26, 0.15);
-  transition: all 0.5s ease;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--saffron), var(--gold));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-card:hover {
-  border-color: rgba(201, 162, 39, 0.4);
-  box-shadow: 0 10px 40px rgba(201, 162, 39, 0.15),
-    var(--shadow-deep);
-}
-
-/* Gold accent on project numbers */
-.project-card .number {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--saffron));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0.6;
-}
-
-/* Gold glow on hobby cards - animation removed, only glow */
-.hobby-card {
-  position: relative;
-  transition: all 0.4s ease;
-}
-
-.hobby-card:hover {
-  box-shadow: 0 0 25px rgba(201, 162, 39, 0.3);
-}
-
-/* Gold glow on hobby icons */
-.hobby-icon svg {
-  transition: all 0.4s ease;
-}
-
-.hobby-card:hover .hobby-icon svg {
-  filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.6));
-  color: var(--gold);
-}
-
-/* Gold shine on nav links */
-nav a:hover {
-  text-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
-}
-
-nav a::after {
-  background: linear-gradient(90deg, var(--gold), var(--saffron), var(--gold));
-}
-
-/* Gold accent on logo */
-nav .logo {
-  transition: all 0.4s ease;
-}
-
-nav .logo:hover {
-  text-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
-  color: var(--gold);
-}
-
-/* Gold shimmer on social links */
-.social-link {
-  transition: all 0.4s ease;
-}
-
-.social-link:hover {
-  border-color: var(--gold) !important;
-  color: var(--gold) !important;
-  box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
-}
-
-/* Gold accent on resume button */
-.resume-btn:hover {
-  border-color: var(--gold) !important;
-  box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
-}
-
-/* Gold highlight on contact items */
-.contact-item:hover .icon {
-  color: var(--gold);
-  text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
-}
-
-/* ===========================
-   ANIMATED MANDALA SECTION DIVIDERS
-   Traditional decorative patterns
-   =========================== */
-
-/* Mandala divider container */
-.mandala-divider {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animated mandala SVG styling */
-.mandala-svg {
-  width: 80px;
-  height: 80px;
-  animation: rotateMandala 30s linear infinite, goldGlow 3s ease-in-out infinite;
-}
-
-.mandala-svg path,
-.mandala-svg circle {
-  stroke: var(--gold);
-  fill: none;
-  stroke-width: 1;
-}
-
-.mandala-svg .inner-pattern {
-  animation: rotateMandalaReverse 20s linear infinite;
-  transform-origin: center;
-}
-
-@keyframes rotateMandala {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateMandalaReverse {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-/* Decorative lines extending from mandala */
-.mandala-divider::before,
-.mandala-divider::after {
-  content: '';
-  flex: 1;
-  height: 2px;
-  max-width: 200px;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--gold-light) 30%,
-      var(--gold) 50%,
-      var(--gold-light) 70%,
-      transparent);
-  background-size: 200% 100%;
-  animation: goldShimmer 4s ease-in-out infinite;
-}
-
-.mandala-divider::before {
-  margin-right: 1.5rem;
-}
-
-.mandala-divider::after {
-  margin-left: 1.5rem;
-}
-
-/* Simple gold shimmer divider - no rotating elements */
-.section-header .divider {
-  width: 120px;
-  height: 3px;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--gold-light),
-      var(--gold),
-      var(--gold-light),
-      transparent);
-  background-size: 200% 100%;
-  animation: goldShimmer 3s ease-in-out infinite;
-  margin: 0 auto var(--spacing-sm);
-  border-radius: 2px;
-}
-
-.section-header .divider::before,
-.section-header .divider::after {
-  display: none;
-}
-
-/* Hide the divider line completely */
-.section-header .divider {
-  display: none;
-}
-
-/* Decorative corner flourishes with gold */
-section::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  border-left: 2px solid var(--gold);
-  border-top: 2px solid var(--gold);
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-section::after {
-  content: '';
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  border-right: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-/* Hero section special - no corner flourishes */
-#hero::before,
-#hero::after {
-  display: none;
-}
-
-/* Scrollbar gold accent */
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--gold), var(--maroon), var(--gold));
-}
-
-/* Gold accent on skill items */
-.skill-item {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.skill-item:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 10px rgba(201, 162, 39, 0.2);
-}
-
-/* Gold glow on year badges */
-.year-badge {
-  transition: all 0.4s ease;
-}
-
-.experience-item:hover .year-badge {
-  box-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
-  border-color: var(--gold);
-}
-
-/* Footer gold accent */
-footer .sanskrit {
-  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: goldShimmer 4s ease-in-out infinite;
-  background-size: 200% 100%;
-}
-
-/* ===========================
-   MOBILE UX ENHANCEMENTS
-   =========================== */
-
-/* Smart Header - Hide on scroll down */
-nav {
-  transition: transform 0.3s ease, background 0.4s ease, box-shadow 0.4s ease;
-}
-
-nav.nav-hidden {
-  transform: translateY(-100%);
-}
-
-/* Hamburger Menu Button */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-  margin-left: auto;
-  margin-right: var(--spacing-sm);
-}
-
-.hamburger-line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--maroon);
-  margin: 3px 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-[data-theme="dark"] .hamburger-line {
-  background: var(--gold);
-}
-
-/* Hamburger active state (X) */
-.hamburger.active .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Mobile Navigation Dropdown */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  nav .container {
-    flex-wrap: wrap;
-  }
-
-  nav ul {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md);
-    background: var(--cream);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.3s ease;
-    z-index: 999;
-  }
-
-  [data-theme="dark"] nav ul {
-    background: #1f1014;
-  }
-
-  nav ul.mobile-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  nav ul li {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  nav ul.mobile-open li {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.3s ease;
-  }
-
-  nav ul.mobile-open li:nth-child(1) {
-    transition-delay: 0.1s;
-  }
-
-  nav ul.mobile-open li:nth-child(2) {
-    transition-delay: 0.15s;
-  }
-
-  nav ul.mobile-open li:nth-child(3) {
-    transition-delay: 0.2s;
-  }
-
-  nav ul.mobile-open li:nth-child(4) {
-    transition-delay: 0.25s;
-  }
-
-  nav ul.mobile-open li:nth-child(5) {
-    transition-delay: 0.3s;
-  }
-
-  nav ul.mobile-open li:nth-child(6) {
-    transition-delay: 0.35s;
-  }
-
-  nav ul.mobile-open li:nth-child(7) {
-    transition-delay: 0.4s;
-  }
-
-  nav a {
-    font-size: 1.2rem;
-    padding: 1rem 0;
-  }
-
-  .theme-toggle {
-    position: absolute;
-    right: var(--spacing-sm);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
-
-/* Touch Feedback - Ripple Effect */
-.ripple-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(201, 162, 39, 0.4);
-  transform: scale(0);
-  animation: rippleEffect 0.6s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes rippleEffect {
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Swipe Indicator Dots */
-.swipe-indicator {
-  display: none;
-  justify-content: center;
-  gap: 8px;
-  margin-top: var(--spacing-sm);
-}
-
-@media (max-width: 768px) {
-  .swipe-indicator {
-    display: flex;
-  }
-
-  .projects-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: var(--spacing-sm);
-    padding-bottom: var(--spacing-sm);
-  }
-
-  .project-card {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
-  }
-}
-
-.swipe-indicator .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(107, 26, 26, 0.3);
-  transition: all 0.3s ease;
-}
-
-.swipe-indicator .dot.active {
-  background: var(--gold);
-  transform: scale(1.3);
-}
-
-[data-theme="dark"] .swipe-indicator .dot {
-  background: rgba(232, 197, 71, 0.3);
-}
-
-[data-theme="dark"] .swipe-indicator .dot.active {
-  background: var(--gold);
-}
-
-/* Pull-to-Refresh Indicator */
-.pull-refresh-indicator {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-100px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 1rem;
-  background: var(--cream);
-  border-radius: 0 0 20px 20px;
-  box-shadow: var(--shadow-warm);
-  z-index: 9999;
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-[data-theme="dark"] .pull-refresh-indicator {
-  background: #2a1519;
-}
-
-.pull-refresh-icon {
-  font-size: 2rem;
-  color: var(--gold);
-  transition: transform 0.3s ease;
-}
-
-.pull-refresh-indicator.ready .pull-refresh-icon {
-  animation: spin 1s linear infinite;
-}
-
-.pull-refresh-indicator.refreshing .pull-refresh-icon {
-  animation: spin 0.5s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.pull-refresh-text {
-  font-size: 0.75rem;
-  color: var(--brown-soft);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-[data-theme="dark"] .pull-refresh-text {
-  color: var(--gold-light);
-}
-
-/* Hobbies grid mobile */
-@media (max-width: 768px) {
-  .hobbies-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-  }
-
-  .hobby-card {
-    padding: 1.5rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hobbies-grid {
-    grid-template-columns: 1fr;
-  }
-}
+// ========================================
+// RICH INDIAN HERITAGE PORTFOLIO
+// Warm · Luxurious · Transcendent
+// ========================================
+
+// ===== FLOATING PARTICLES =====
+class FloatingParticles {
+    constructor() {
+        this.container = document.getElementById('particles');
+        if (this.container) {
+            this.createParticles();
+        }
+    }
+
+    createParticles() {
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // Random position and animation delay
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+
+            // Random size variation
+            const size = 2 + Math.random() * 3;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            this.container.appendChild(particle);
+        }
+    }
+}
+
+// ===== KUMKUM & CHAWAL SPREADING EFFECT =====
+class KumkumChawal {
+    constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.id = 'kumkum-canvas';
+        this.canvas.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        `;
+        document.body.appendChild(this.canvas);
+
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.settledParticles = [];
+
+        // Create bell sound
+        this.bellSound = new Audio('bell.mp3');
+        this.bellSound.volume = 0.0125;
+
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+
+        // Listen for clicks
+        document.addEventListener('click', (e) => {
+            this.spread(e.clientX, e.clientY);
+            this.playBell();
+        });
+
+        this.animate();
+    }
+
+    playBell() {
+        // Clone and play to allow overlapping sounds
+        const bellClone = this.bellSound.cloneNode();
+        bellClone.volume = 0.0125;
+        bellClone.play().catch(e => console.log('Bell sound blocked'));
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        // Redraw settled particles after resize
+        this.redrawSettled();
+    }
+
+    spread(x, y) {
+        // Create kumkum (red powder) particles
+        for (let i = 0; i < 25; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 8 + 3;
+            const size = Math.random() * 4 + 2;
+
+            this.particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 2,
+                size: size,
+                color: this.getKumkumColor(),
+                type: 'kumkum',
+                life: 1,
+                gravity: 0.15 + Math.random() * 0.1,
+                friction: 0.98,
+                rotation: Math.random() * 360
+            });
+        }
+
+        // Create chawal (rice) particles
+        for (let i = 0; i < 15; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 6 + 2;
+
+            this.particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed - 3,
+                width: Math.random() * 3 + 2,
+                height: Math.random() * 8 + 4,
+                color: this.getChawalColor(),
+                type: 'chawal',
+                life: 1,
+                gravity: 0.2 + Math.random() * 0.1,
+                friction: 0.97,
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10
+            });
+        }
+    }
+
+    getKumkumColor() {
+        // Various shades of kumkum red
+        const colors = [
+            '#e31c1c', // Bright red
+            '#c41818', // Deep red
+            '#d42a2a', // Vermillion
+            '#b81414', // Dark red
+            '#ff3030', // Light red
+            '#a01010'  // Maroon red
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    getChawalColor() {
+        // Shades of rice white/cream
+        const colors = [
+            '#fffff0', // Ivory
+            '#faf8f5', // Off white
+            '#f5f5dc', // Beige
+            '#fffef0', // Cream
+            '#fdfdf5'  // Light cream
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    update() {
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+            const p = this.particles[i];
+
+            // Apply gravity
+            p.vy += p.gravity;
+
+            // Apply friction
+            p.vx *= p.friction;
+            p.vy *= p.friction;
+
+            // Update position
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Rotate chawal
+            if (p.type === 'chawal') {
+                p.rotation += p.rotationSpeed;
+                p.rotationSpeed *= 0.98;
+            }
+
+            // Check if particle should settle
+            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            if (speed < 0.5 && p.y > 100) {
+                // Settle the particle with fade timer
+                p.opacity = 1;
+                p.fadeStart = Date.now();
+                p.fadeDuration = 3000; // Fade out over 3 seconds
+                this.settledParticles.push({ ...p });
+                this.particles.splice(i, 1);
+            }
+
+            // Remove if off screen
+            if (p.y > this.canvas.height + 50) {
+                this.particles.splice(i, 1);
+            }
+        }
+
+        // Update settled particles - fade them out
+        for (let i = this.settledParticles.length - 1; i >= 0; i--) {
+            const p = this.settledParticles[i];
+            const elapsed = Date.now() - p.fadeStart;
+            p.opacity = 1 - (elapsed / p.fadeDuration);
+
+            if (p.opacity <= 0) {
+                this.settledParticles.splice(i, 1);
+            }
+        }
+    }
+
+    drawParticle(p, opacity = 1) {
+        this.ctx.save();
+        this.ctx.globalAlpha = p.opacity !== undefined ? p.opacity : opacity;
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate(p.rotation * Math.PI / 180);
+
+        if (p.type === 'kumkum') {
+            // Draw powder particle with soft edges
+            const gradient = this.ctx.createRadialGradient(0, 0, 0, 0, 0, p.size);
+            gradient.addColorStop(0, p.color);
+            gradient.addColorStop(0.6, p.color);
+            gradient.addColorStop(1, 'transparent');
+
+            this.ctx.fillStyle = gradient;
+            this.ctx.beginPath();
+            this.ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+            this.ctx.fill();
+        } else {
+            // Draw rice grain (elongated oval)
+            this.ctx.fillStyle = p.color;
+            this.ctx.shadowColor = 'rgba(0,0,0,0.1)';
+            this.ctx.shadowBlur = 2;
+            this.ctx.shadowOffsetY = 1;
+
+            this.ctx.beginPath();
+            this.ctx.ellipse(0, 0, p.width, p.height, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            // Add subtle highlight to rice
+            this.ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            this.ctx.beginPath();
+            this.ctx.ellipse(-p.width * 0.2, -p.height * 0.3, p.width * 0.3, p.height * 0.2, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
+
+        this.ctx.restore();
+    }
+
+    redrawSettled() {
+        // Redraw all settled particles
+        this.settledParticles.forEach(p => this.drawParticle(p));
+    }
+
+    animate() {
+        // Clear canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Update and draw
+        this.update();
+
+        // Draw settled particles (fading)
+        this.settledParticles.forEach(p => this.drawParticle(p));
+
+        // Draw active particles
+        this.particles.forEach(p => this.drawParticle(p));
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// ===== AMBIENT OM AUDIO (SILENT BACKGROUND) =====
+class AmbientAudio {
+    constructor() {
+        this.audio = document.getElementById('omSound');
+        this.hasStarted = false;
+
+        // Setup audio
+        if (this.audio) {
+            this.audio.src = 'om.mp3';
+            this.audio.volume = 0.4;
+            this.audio.loop = true;
+            this.audio.load();
+        }
+
+        // Create entrance overlay for autoplay
+        this.createEntranceOverlay();
+    }
+
+    createEntranceOverlay() {
+        // Create ultra-premium minimalist entrance
+        this.overlay = document.createElement('div');
+        this.overlay.id = 'entrance-overlay';
+        this.overlay.innerHTML = `
+            <!-- Subtle Geometric Background -->
+            <div class="geo-bg">
+                <div class="geo-circle"></div>
+                <div class="geo-line line-h"></div>
+                <div class="geo-line line-v"></div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="entrance-content">
+                <div class="overline">॥ विद्या ददाति विनयम् ॥</div>
+                <div class="om-symbol">ॐ</div>
+                <h1>AKSHAT</h1>
+                <div class="divider-line"></div>
+                <p class="tagline">Tradition · Innovation · Excellence</p>
+                <div class="enter-area">
+                    <span class="enter-text">Enter</span>
+                    <div class="enter-line"></div>
+                </div>
+            </div>
+        `;
+
+        this.overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #fdf8f0 0%, #f5ebe0 50%, #eddcd2 100%);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 1.5s ease;
+            overflow: hidden;
+            will-change: opacity, transform, filter;
+        `;
+
+        // Premium minimalist styles
+        const epicStyle = document.createElement('style');
+        epicStyle.textContent = `
+            /* Subtle Geometric Background */
+            #entrance-overlay .geo-bg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+            }
+            
+            #entrance-overlay .geo-circle {
+                width: 400px;
+                height: 400px;
+                border: 1px solid rgba(201, 162, 39, 0.15);
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: slowRotate 60s linear infinite;
+            }
+            
+            #entrance-overlay .geo-line {
+                position: absolute;
+                background: rgba(201, 162, 39, 0.08);
+            }
+            
+            #entrance-overlay .line-h {
+                width: 100vw;
+                height: 1px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            #entrance-overlay .line-v {
+                width: 1px;
+                height: 100vh;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            @keyframes slowRotate {
+                from { transform: translate(-50%, -50%) rotate(0deg); }
+                to { transform: translate(-50%, -50%) rotate(360deg); }
+            }
+            
+            /* Main Content */
+            #entrance-overlay .entrance-content {
+                text-align: center;
+                z-index: 10;
+                animation: fadeIn 1.5s ease forwards;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            #entrance-overlay .overline {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 1rem;
+                color: #c9a227;
+                letter-spacing: 0.4em;
+                margin-bottom: 2rem;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 0.5s;
+            }
+            
+            #entrance-overlay .om-symbol {
+                font-size: 5rem;
+                color: #c9a227;
+                margin-bottom: 1rem;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 0.8s, subtleGlow 4s ease-in-out infinite 1.8s;
+            }
+            
+            @keyframes subtleGlow {
+                0%, 100% { text-shadow: 0 0 20px rgba(201, 162, 39, 0.1); }
+                50% { text-shadow: 0 0 40px rgba(201, 162, 39, 0.25); }
+            }
+            
+            #entrance-overlay h1 {
+                font-family: 'Cinzel', serif;
+                font-size: clamp(3rem, 8vw, 5rem);
+                font-weight: 400;
+                color: #2d1810;
+                letter-spacing: 0.4em;
+                margin-bottom: 1rem;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 1.1s;
+            }
+            
+            #entrance-overlay .divider-line {
+                width: 80px;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, #c9a227, transparent);
+                margin: 0 auto 1.5rem;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 1.4s;
+            }
+            
+            #entrance-overlay .tagline {
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 300;
+                color: #5c4033;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                margin-bottom: 3rem;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 1.7s;
+            }
+            
+            #entrance-overlay .enter-area {
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 2s;
+            }
+            
+            #entrance-overlay .enter-text {
+                font-family: 'Cinzel', serif;
+                font-size: 0.9rem;
+                color: #6b1a1a;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+            
+            #entrance-overlay .enter-line {
+                width: 40px;
+                height: 1px;
+                background: #6b1a1a;
+                margin: 0 auto;
+                animation: expandLine 1.5s ease-in-out infinite 2.5s;
+            }
+            
+            @keyframes expandLine {
+                0%, 100% { width: 40px; opacity: 0.5; }
+                50% { width: 60px; opacity: 1; }
+            }
+            
+            #entrance-overlay:hover .enter-line {
+                width: 80px;
+                background: #c9a227;
+            }
+            
+            #entrance-overlay:hover .enter-text {
+                color: #c9a227;
+            }
+        `;
+        document.head.appendChild(epicStyle);
+        document.body.appendChild(this.overlay);
+
+        // Click to enter
+        this.overlay.addEventListener('click', () => this.enter());
+    }
+
+    enter() {
+        // Trigger majestic 4-point entrance spread (Top/Bottom corners)
+        if (window.kumkumInstance) {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            // Left Side
+            window.kumkumInstance.spread(0, h * 0.15); // Left Top
+            window.kumkumInstance.spread(0, h * 0.85); // Left Bottom
+
+            // Right Side
+            setTimeout(() => {
+                window.kumkumInstance.spread(w, h * 0.15); // Right Top
+                window.kumkumInstance.spread(w, h * 0.85); // Right Bottom
+            }, 100);
+        }
+
+        // Fade out overlay with cinematic effect
+        this.overlay.style.opacity = '0';
+        this.overlay.style.transform = 'scale(1.15)';
+        this.overlay.style.filter = 'blur(10px)';
+
+        setTimeout(() => {
+            this.overlay.remove();
+        }, 1500);
+
+        // Start playing Om silently in background
+        if (this.audio && !this.hasStarted) {
+            this.audio.play().then(() => {
+                this.hasStarted = true;
+            }).catch(e => {
+                console.log('Audio autoplay blocked - user interaction required');
+            });
+        }
+    }
+}
+
+// ===== EXPERIENCE CURVED PATH CONNECTOR =====
+class ExperiencePathConnector {
+    constructor() {
+        this.experienceSection = document.getElementById('experience');
+        if (!this.experienceSection) return;
+
+        // Wait for DOM to be fully rendered
+        setTimeout(() => this.createPaths(), 800);
+        window.addEventListener('resize', () => this.createPaths());
+    }
+
+    createPaths() {
+        const cards = this.experienceSection.querySelectorAll('.exp-content');
+        if (cards.length < 2) return;
+
+        // Remove existing path
+        const existingSvg = this.experienceSection.querySelector('.journey-svg');
+        if (existingSvg) existingSvg.remove();
+
+        const flow = this.experienceSection.querySelector('.experience-flow');
+        if (!flow) return;
+
+        // Create SVG
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.classList.add('journey-svg');
+        svg.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: visible;
+        `;
+
+        const flowRect = flow.getBoundingClientRect();
+
+        // Get entry/exit points for each card (top and bottom center)
+        const points = [];
+        cards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left - flowRect.left + rect.width / 2;
+            const topY = rect.top - flowRect.top;
+            const bottomY = rect.top - flowRect.top + rect.height;
+            const midY = rect.top - flowRect.top + rect.height / 2;
+
+            // First card: start from middle, exit from bottom
+            // Other cards: enter from top, exit from bottom
+            if (i === 0) {
+                points.push({ x: centerX, y: midY, type: 'start' });
+                points.push({ x: centerX, y: bottomY, type: 'exit' });
+            } else {
+                points.push({ x: centerX, y: topY, type: 'enter' });
+                points.push({ x: centerX, y: bottomY, type: 'exit' });
+            }
+        });
+
+        // Remove last exit point (not needed)
+        points.pop();
+
+        // Create smooth curved path
+        let pathD = `M ${points[0].x} ${points[0].y}`;
+
+        for (let i = 0; i < points.length - 1; i++) {
+            const curr = points[i];
+            const next = points[i + 1];
+
+            // If both points are on same card (exit follows start/enter), draw straight line
+            if (Math.abs(curr.x - next.x) < 5) {
+                pathD += ` L ${next.x} ${next.y}`;
+            } else {
+                // Curve between cards - nice S-curve
+                const midY = (curr.y + next.y) / 2;
+                const curveOut = (next.x - curr.x) * 0.4;
+
+                // Control points create smooth S-curve
+                const cp1x = curr.x;
+                const cp1y = curr.y + 50;
+                const cp2x = next.x;
+                const cp2y = next.y - 50;
+
+                pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${next.x} ${next.y}`;
+            }
+        }
+
+        // Create path element
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', pathD);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#c9a227');
+        path.setAttribute('stroke-width', '2');
+        path.setAttribute('stroke-dasharray', '10 8');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('opacity', '0.5');
+
+        svg.appendChild(path);
+        flow.style.position = 'relative';
+        flow.appendChild(svg);
+    }
+}
+
+// ===== SMOOTH SCROLL NAVIGATION =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ===== NAVIGATION HIGHLIGHTING =====
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function highlightNav() {
+    const scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNav);
+
+// ===== SCROLL REVEAL ANIMATIONS =====
+function revealOnScroll() {
+    const elements = document.querySelectorAll('.fade-in');
+
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop < windowHeight - 100) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// ===== NAVBAR SHADOW ON SCROLL =====
+const nav = document.querySelector('nav');
+
+function updateNavShadow() {
+    if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 4px 30px rgba(107, 26, 26, 0.08)';
+    } else {
+        nav.style.boxShadow = 'none';
+    }
+}
+
+window.addEventListener('scroll', updateNavShadow);
+
+// ===== FORM HANDLING (Google Forms) =====
+const contactForm = document.querySelector('.contact-form');
+
+// ⬇️ REPLACE THESE WITH YOUR GOOGLE FORM DETAILS
+const GOOGLE_FORM_CONFIG = {
+    // Example: https://docs.google.com/forms/d/e/1FAIpQLSd.../formResponse
+    ACTION_URL: "https://docs.google.com/forms/d/e/1FAIpQLSd7tCVo55BCZ00XNoM8sVVFgwlbNnd2LS_4InUbf92u_q23Sw/formResponse",
+
+    // Get these look at 'Get pre-filled link' in Google Forms
+    ENTRY_IDS: {
+        name: "entry.2121673752",    // John Doe -> Name
+        email: "entry.534784293",   // johndoe@email.com -> Email
+        message: "entry.490396674"  // Hey... -> Message
+    }
+};
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+
+        // 1. Get input values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // 2. Prepare Google Form Data
+        const formData = new FormData();
+        formData.append(GOOGLE_FORM_CONFIG.ENTRY_IDS.name, name);
+        formData.append(GOOGLE_FORM_CONFIG.ENTRY_IDS.email, email);
+        formData.append(GOOGLE_FORM_CONFIG.ENTRY_IDS.message, message);
+
+        submitBtn.textContent = 'Sending...';
+
+        try {
+            // 3. Send using 'no-cors' mode (allows sending to Google without error, but can't read response)
+            await fetch(GOOGLE_FORM_CONFIG.ACTION_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            });
+
+            // Success Animation
+            submitBtn.textContent = '✓ Message Sent';
+            submitBtn.style.background = '#e07020';
+            this.reset();
+
+        } catch (error) {
+            console.error('Error:', error);
+            submitBtn.textContent = '⚠ Error';
+            submitBtn.style.background = '#d32f2f';
+        }
+
+        // Reset button after delay
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+        }, 3500);
+    });
+}
+
+// ===== INITIALIZE =====
+document.addEventListener('DOMContentLoaded', () => {
+    new FloatingParticles();
+    new AmbientAudio();
+    window.kumkumInstance = new KumkumChawal();
+    new ExperiencePathConnector();
+    highlightNav();
+    revealOnScroll();
+
+    console.log('॥ Portfolio Loaded ॥');
+});
+
+// ===== RESUME MODAL LOGIC =====
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('resumeModal');
+    const btn = document.getElementById('viewResumeBtn');
+    const span = document.getElementsByClassName('close-modal')[0];
+
+    if (btn && modal && span) {
+        // Open modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+            modal.classList.remove('closing');
+            // Play subtle bell sound when opening
+            const audio = new Audio('bell.mp3');
+            audio.volume = 0.05;
+            audio.play().catch(e => console.log('Audio error'));
+        }
+
+        function closeModal() {
+            modal.classList.add('closing');
+            setTimeout(() => {
+                modal.style.display = "none";
+                modal.classList.remove('closing');
+            }, 380); // Slightly less than 0.4s to prevent flickers
+        }
+
+        // Close modal
+        span.onclick = function () {
+            closeModal();
+        }
+
+        // Close on outside click
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    }
+});
+
+// ===== DARK/LIGHT THEME TOGGLE =====
+class ThemeToggle {
+    constructor() {
+        this.toggle = document.getElementById('themeToggle');
+        this.html = document.documentElement;
+        this.STORAGE_KEY = 'portfolio-theme';
+
+        if (!this.toggle) return;
+
+        // Initialize theme
+        this.initTheme();
+
+        // Add click listener
+        this.toggle.addEventListener('click', () => this.toggleTheme());
+    }
+
+    initTheme() {
+        // Check localStorage first - only respect saved preference
+        const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+
+        if (savedTheme) {
+            // User explicitly chose a theme before
+            this.setTheme(savedTheme);
+        } else {
+            // Always default to light mode (ignore system preference)
+            this.setTheme('light');
+        }
+
+        // Don't auto-switch based on system preference
+        // User must manually toggle if they want dark mode
+    }
+
+    setTheme(theme) {
+        if (theme === 'dark') {
+            this.html.setAttribute('data-theme', 'dark');
+        } else {
+            this.html.removeAttribute('data-theme');
+        }
+    }
+
+    toggleTheme() {
+        const currentTheme = this.html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        this.setTheme(newTheme);
+        localStorage.setItem(this.STORAGE_KEY, newTheme);
+
+        // Play subtle sound on toggle
+        const audio = new Audio('bell.mp3');
+        audio.volume = 0.03;
+        audio.play().catch(e => console.log('Audio blocked'));
+    }
+}
+
+// Initialize theme toggle
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeToggle();
+});
+
+// ===== SMART HEADER (Hide on scroll down, show on scroll up) =====
+class SmartHeader {
+    constructor() {
+        this.nav = document.querySelector('nav');
+        if (!this.nav) return;
+
+        this.lastScrollY = 0;
+        this.ticking = false;
+        this.navHeight = this.nav.offsetHeight;
+
+        window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+    }
+
+    onScroll() {
+        if (!this.ticking) {
+            requestAnimationFrame(() => {
+                this.updateNav();
+                this.ticking = false;
+            });
+            this.ticking = true;
+        }
+    }
+
+    updateNav() {
+        const currentScrollY = window.scrollY;
+
+        // Don't hide when at top of page
+        if (currentScrollY < 100) {
+            this.nav.classList.remove('nav-hidden');
+            this.lastScrollY = currentScrollY;
+            return;
+        }
+
+        // Scrolling down - hide navbar
+        if (currentScrollY > this.lastScrollY && currentScrollY > this.navHeight) {
+            this.nav.classList.add('nav-hidden');
+        }
+        // Scrolling up - show navbar
+        else if (currentScrollY < this.lastScrollY) {
+            this.nav.classList.remove('nav-hidden');
+        }
+
+        this.lastScrollY = currentScrollY;
+    }
+}
+
+// ===== HAMBURGER MENU (Mobile Navigation) =====
+class MobileMenu {
+    constructor() {
+        this.nav = document.querySelector('nav .container');
+        this.menu = document.querySelector('nav ul');
+        if (!this.nav || !this.menu) return;
+
+        this.isOpen = false;
+        this.createHamburger();
+        this.setupEventListeners();
+    }
+
+    createHamburger() {
+        // Create hamburger button
+        this.hamburger = document.createElement('button');
+        this.hamburger.className = 'hamburger';
+        this.hamburger.setAttribute('aria-label', 'Toggle menu');
+        this.hamburger.innerHTML = `
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        `;
+
+        // Insert before theme toggle or at end
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            this.nav.insertBefore(this.hamburger, themeToggle);
+        } else {
+            this.nav.appendChild(this.hamburger);
+        }
+    }
+
+    setupEventListeners() {
+        this.hamburger.addEventListener('click', () => this.toggle());
+
+        // Close menu when clicking a link
+        this.menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => this.close());
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && !this.nav.contains(e.target)) {
+                this.close();
+            }
+        });
+    }
+
+    toggle() {
+        this.isOpen ? this.close() : this.open();
+    }
+
+    open() {
+        this.isOpen = true;
+        this.hamburger.classList.add('active');
+        this.menu.classList.add('mobile-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.isOpen = false;
+        this.hamburger.classList.remove('active');
+        this.menu.classList.remove('mobile-open');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===== TOUCH FEEDBACK (Ripple Effect) =====
+class TouchFeedback {
+    constructor() {
+        // Add ripple to interactive elements
+        const interactiveElements = document.querySelectorAll(
+            '.btn, .project-card, .hobby-card, .social-link, .resume-btn, .submit-btn, .nav-link'
+        );
+
+        interactiveElements.forEach(el => {
+            el.classList.add('ripple-container');
+            el.addEventListener('click', (e) => this.createRipple(e, el));
+        });
+    }
+
+    createRipple(e, element) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+        `;
+
+        element.appendChild(ripple);
+
+        // Remove ripple after animation
+        setTimeout(() => ripple.remove(), 600);
+    }
+}
+
+// ===== SWIPE GESTURES (Project Cards) =====
+class SwipeGestures {
+    constructor() {
+        this.projectsGrid = document.querySelector('.projects-grid');
+        if (!this.projectsGrid) return;
+
+        this.cards = this.projectsGrid.querySelectorAll('.project-card');
+        this.currentIndex = 0;
+        this.startX = 0;
+        this.isSwiping = false;
+
+        // Only enable on mobile
+        if (window.innerWidth > 768) return;
+
+        this.setupMobileView();
+        this.setupEventListeners();
+    }
+
+    setupMobileView() {
+        // Add swipe indicator
+        this.indicator = document.createElement('div');
+        this.indicator.className = 'swipe-indicator';
+        this.cards.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = i === 0 ? 'dot active' : 'dot';
+            this.indicator.appendChild(dot);
+        });
+        this.projectsGrid.parentNode.appendChild(this.indicator);
+    }
+
+    setupEventListeners() {
+        this.projectsGrid.addEventListener('touchstart', (e) => {
+            this.startX = e.touches[0].clientX;
+            this.isSwiping = true;
+        }, { passive: true });
+
+        this.projectsGrid.addEventListener('touchmove', (e) => {
+            if (!this.isSwiping) return;
+        }, { passive: true });
+
+        this.projectsGrid.addEventListener('touchend', (e) => {
+            if (!this.isSwiping) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const diff = this.startX - endX;
+
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0 && this.currentIndex < this.cards.length - 1) {
+                    this.currentIndex++;
+                } else if (diff < 0 && this.currentIndex > 0) {
+                    this.currentIndex--;
+                }
+                this.scrollToCard();
+            }
+
+            this.isSwiping = false;
+        });
+    }
+
+    scrollToCard() {
+        const card = this.cards[this.currentIndex];
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        // Update indicator
+        this.indicator.querySelectorAll('.dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === this.currentIndex);
+        });
+    }
+}
+
+// ===== PULL-TO-REFRESH ANIMATION =====
+class PullToRefresh {
+    constructor() {
+        this.startY = 0;
+        this.pulling = false;
+        this.threshold = 100;
+
+        // Only on mobile and when at top of page
+        if (window.innerWidth > 768) return;
+
+        this.createIndicator();
+        this.setupEventListeners();
+    }
+
+    createIndicator() {
+        this.indicator = document.createElement('div');
+        this.indicator.className = 'pull-refresh-indicator';
+        this.indicator.innerHTML = `
+            <div class="pull-refresh-icon">🕉</div>
+            <span class="pull-refresh-text">Pull to refresh</span>
+        `;
+        document.body.prepend(this.indicator);
+    }
+
+    setupEventListeners() {
+        document.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                this.startY = e.touches[0].clientY;
+                this.pulling = true;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!this.pulling) return;
+
+            const currentY = e.touches[0].clientY;
+            const diff = currentY - this.startY;
+
+            if (diff > 0 && diff < this.threshold * 1.5) {
+                this.indicator.style.transform = `translateY(${Math.min(diff, this.threshold)}px)`;
+                this.indicator.style.opacity = Math.min(diff / this.threshold, 1);
+
+                if (diff > this.threshold) {
+                    this.indicator.classList.add('ready');
+                    this.indicator.querySelector('.pull-refresh-text').textContent = 'Release to refresh';
+                } else {
+                    this.indicator.classList.remove('ready');
+                    this.indicator.querySelector('.pull-refresh-text').textContent = 'Pull to refresh';
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            if (!this.pulling) return;
+
+            if (this.indicator.classList.contains('ready')) {
+                // Trigger refresh animation
+                this.indicator.classList.add('refreshing');
+                this.indicator.querySelector('.pull-refresh-text').textContent = 'Refreshing...';
+
+                // Simulate refresh
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                this.reset();
+            }
+
+            this.pulling = false;
+        });
+    }
+
+    reset() {
+        this.indicator.style.transform = 'translateY(0)';
+        this.indicator.style.opacity = '0';
+        this.indicator.classList.remove('ready', 'refreshing');
+    }
+}
+
+// Initialize all mobile enhancements
+document.addEventListener('DOMContentLoaded', () => {
+    new SmartHeader();
+    new MobileMenu();
+    new TouchFeedback();
+    new SwipeGestures();
+    new PullToRefresh();
+});
