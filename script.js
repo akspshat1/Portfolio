@@ -417,6 +417,7 @@ class AmbientAudio {
                 font-weight: 400;
                 color: #2d1810;
                 letter-spacing: 0.4em;
+                margin-right: -0.4em; /* Compensate for centering */
                 margin-bottom: 1rem;
                 opacity: 0;
                 animation: fadeIn 1s ease forwards 1.1s;
@@ -562,6 +563,7 @@ class ExperiencePathConnector {
 
         const flowRect = flow.getBoundingClientRect();
 
+        // Get entry/exit points for each card (top and bottom center)
         // Get entry/exit points for each card (top and bottom center)
         const points = [];
         cards.forEach((card, i) => {

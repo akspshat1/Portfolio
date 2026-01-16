@@ -849,6 +849,7 @@ section {
   position: relative;
   padding: 1.5rem;
   border: 1px solid rgba(224, 112, 32, 0.3);
+  border-radius: 20px;
 }
 
 .about-image .frame::before,
@@ -865,6 +866,7 @@ section {
   left: -8px;
   border-right: none;
   border-bottom: none;
+  border-top-left-radius: 24px;
 }
 
 .about-image .frame::after {
@@ -872,10 +874,12 @@ section {
   right: -8px;
   border-left: none;
   border-top: none;
+  border-bottom-right-radius: 24px;
 }
 
 .about-image img {
   width: 100%;
+  border-radius: 12px;
   filter: sepia(10%) contrast(1.05);
 }
 
@@ -1343,6 +1347,7 @@ section {
   background: #7d2020;
   padding: 1.8rem 2rem;
   border: 1px solid rgba(244, 164, 96, 0.2);
+  border-radius: 20px;
   transition: all 0.4s ease;
   position: relative;
   z-index: 2;
@@ -1469,11 +1474,14 @@ section {
 }
 
 .skill-item {
-  padding: 0.7rem 0;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(107, 26, 26, 0.1);
+  border-radius: 12px;
   color: var(--brown-soft);
   font-size: 0.9rem;
   font-weight: 300;
-  border-bottom: 1px solid rgba(107, 26, 26, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -1535,6 +1543,7 @@ section {
   width: 50px;
   height: 50px;
   border: 1px solid rgba(107, 26, 26, 0.2);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1566,6 +1575,7 @@ section {
   margin-top: var(--spacing-sm);
   background: transparent;
   border: 1px solid rgba(107, 26, 26, 0.2);
+  border-radius: 12px;
   color: var(--maroon);
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -1586,6 +1596,7 @@ section {
   background: var(--cream);
   padding: var(--spacing-md);
   border: 1px solid rgba(107, 26, 26, 0.1);
+  border-radius: 20px;
   box-shadow: var(--shadow-warm);
 }
 
@@ -1608,6 +1619,7 @@ section {
   padding: 1rem;
   background: var(--warm-white);
   border: 1px solid rgba(107, 26, 26, 0.1);
+  border-radius: 12px;
   color: var(--brown-dark);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -1631,6 +1643,7 @@ section {
   background: var(--maroon);
   color: var(--cream);
   border: none;
+  border-radius: 12px;
   font-family: var(--font-body);
   font-size: 0.85rem;
   letter-spacing: 0.15em;
@@ -1929,7 +1942,7 @@ footer p {
   background: transparent;
   cursor: pointer;
   transition: all 0.4s ease;
-  border-radius: 0;
+  border-radius: 12px;
 }
 
 .resume-btn:hover {
@@ -1968,6 +1981,7 @@ footer p {
   background: var(--ivory);
   /* Clean Ivory Background */
   border: 1px solid var(--gold);
+  border-radius: 20px;
   /* Inner golden border effect */
   box-shadow:
     inset 0 0 0 6px var(--ivory),
@@ -2182,6 +2196,7 @@ footer p {
   position: relative;
   overflow: hidden;
   border: 1px solid transparent;
+  border-radius: 12px;
   transition: all 0.4s ease, border-color 0.3s ease;
 }
 
@@ -2212,6 +2227,7 @@ footer p {
 /* Gold border on secondary buttons */
 .btn-secondary {
   border: 2px solid var(--maroon);
+  border-radius: 12px;
   position: relative;
   transition: all 0.4s ease;
 }
@@ -2225,6 +2241,7 @@ footer p {
 .project-card {
   position: relative;
   border: 1px solid rgba(107, 26, 26, 0.15);
+  border-radius: 20px;
   transition: all 0.5s ease;
 }
 
@@ -3014,4 +3031,25 @@ nav.nav-hidden {
   .mobile-sidebar {
     display: none !important;
   }
+}
+
+[data-theme="dark"] .about-text h3 {
+  color: #e8d4b8 !important;
+  /* Silver/Cream for better visibility */
+}
+
+/* Force Detail Values to Silver in Dark Mode */
+[data-theme="dark"] .detail-item .value {
+  color: #e8d4b8 !important;
+}
+
+/* Connector Animation */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+.journey-svg path {
+  animation: dash 30s linear infinite;
 }
