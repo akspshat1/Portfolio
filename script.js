@@ -863,9 +863,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = "block";
             modal.classList.remove('closing');
             // Play subtle bell sound when opening
-            const audio = new Audio('bell.mp3');
-            audio.volume = 0.05;
-            audio.play().catch(e => console.log('Audio error'));
+            if (!window.portfolioMuted) {
+                const audio = new Audio('bell.mp3');
+                audio.volume = 0.05;
+                audio.play().catch(e => console.log('Audio error'));
+            }
         }
 
         function closeModal() {
@@ -938,9 +940,11 @@ class ThemeToggle {
         localStorage.setItem(this.STORAGE_KEY, newTheme);
 
         // Play subtle sound on toggle
-        const audio = new Audio('bell.mp3');
-        audio.volume = 0.03;
-        audio.play().catch(e => console.log('Audio blocked'));
+        if (!window.portfolioMuted) {
+            const audio = new Audio('bell.mp3');
+            audio.volume = 0.03;
+            audio.play().catch(e => console.log('Audio blocked'));
+        }
     }
 }
 
