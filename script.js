@@ -56,7 +56,7 @@ class KumkumChawal {
 
         // Create bell sound
         this.bellSound = new Audio('bell.mp3');
-        this.bellSound.volume = 0.05;
+        this.bellSound.volume = 0.0125;
 
         this.resize();
         window.addEventListener('resize', () => this.resize());
@@ -73,7 +73,7 @@ class KumkumChawal {
     playBell() {
         // Clone and play to allow overlapping sounds
         const bellClone = this.bellSound.cloneNode();
-        bellClone.volume = 0.05;
+        bellClone.volume = 0.0125;
         bellClone.play().catch(e => console.log('Bell sound blocked'));
     }
 
@@ -825,23 +825,19 @@ class ThemeToggle {
     }
 
     initTheme() {
-        // Check localStorage first
+        // Check localStorage first - only respect saved preference
         const savedTheme = localStorage.getItem(this.STORAGE_KEY);
 
         if (savedTheme) {
+            // User explicitly chose a theme before
             this.setTheme(savedTheme);
         } else {
-            // Check system preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.setTheme(prefersDark ? 'dark' : 'light');
+            // Always default to light mode (ignore system preference)
+            this.setTheme('light');
         }
 
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem(this.STORAGE_KEY)) {
-                this.setTheme(e.matches ? 'dark' : 'light');
-            }
-        });
+        // Don't auto-switch based on system preference
+        // User must manually toggle if they want dark mode
     }
 
     setTheme(theme) {
@@ -869,4 +865,312 @@ class ThemeToggle {
 // Initialize theme toggle
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeToggle();
+});
+
+// ===== SMART HEADER (Hide on scroll down, show on scroll up) =====
+class SmartHeader {
+    constructor() {
+        this.nav = document.querySelector('nav');
+        if (!this.nav) return;
+
+        this.lastScrollY = 0;
+        this.ticking = false;
+        this.navHeight = this.nav.offsetHeight;
+
+        window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+    }
+
+    onScroll() {
+        if (!this.ticking) {
+            requestAnimationFrame(() => {
+                this.updateNav();
+                this.ticking = false;
+            });
+            this.ticking = true;
+        }
+    }
+
+    updateNav() {
+        const currentScrollY = window.scrollY;
+
+        // Don't hide when at top of page
+        if (currentScrollY < 100) {
+            this.nav.classList.remove('nav-hidden');
+            this.lastScrollY = currentScrollY;
+            return;
+        }
+
+        // Scrolling down - hide navbar
+        if (currentScrollY > this.lastScrollY && currentScrollY > this.navHeight) {
+            this.nav.classList.add('nav-hidden');
+        }
+        // Scrolling up - show navbar
+        else if (currentScrollY < this.lastScrollY) {
+            this.nav.classList.remove('nav-hidden');
+        }
+
+        this.lastScrollY = currentScrollY;
+    }
+}
+
+// ===== HAMBURGER MENU (Mobile Navigation) =====
+class MobileMenu {
+    constructor() {
+        this.nav = document.querySelector('nav .container');
+        this.menu = document.querySelector('nav ul');
+        if (!this.nav || !this.menu) return;
+
+        this.isOpen = false;
+        this.createHamburger();
+        this.setupEventListeners();
+    }
+
+    createHamburger() {
+        // Create hamburger button
+        this.hamburger = document.createElement('button');
+        this.hamburger.className = 'hamburger';
+        this.hamburger.setAttribute('aria-label', 'Toggle menu');
+        this.hamburger.innerHTML = `
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        `;
+
+        // Insert before theme toggle or at end
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            this.nav.insertBefore(this.hamburger, themeToggle);
+        } else {
+            this.nav.appendChild(this.hamburger);
+        }
+    }
+
+    setupEventListeners() {
+        this.hamburger.addEventListener('click', () => this.toggle());
+
+        // Close menu when clicking a link
+        this.menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => this.close());
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && !this.nav.contains(e.target)) {
+                this.close();
+            }
+        });
+    }
+
+    toggle() {
+        this.isOpen ? this.close() : this.open();
+    }
+
+    open() {
+        this.isOpen = true;
+        this.hamburger.classList.add('active');
+        this.menu.classList.add('mobile-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.isOpen = false;
+        this.hamburger.classList.remove('active');
+        this.menu.classList.remove('mobile-open');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===== TOUCH FEEDBACK (Ripple Effect) =====
+class TouchFeedback {
+    constructor() {
+        // Add ripple to interactive elements
+        const interactiveElements = document.querySelectorAll(
+            '.btn, .project-card, .hobby-card, .social-link, .resume-btn, .submit-btn, .nav-link'
+        );
+
+        interactiveElements.forEach(el => {
+            el.classList.add('ripple-container');
+            el.addEventListener('click', (e) => this.createRipple(e, el));
+        });
+    }
+
+    createRipple(e, element) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+        `;
+
+        element.appendChild(ripple);
+
+        // Remove ripple after animation
+        setTimeout(() => ripple.remove(), 600);
+    }
+}
+
+// ===== SWIPE GESTURES (Project Cards) =====
+class SwipeGestures {
+    constructor() {
+        this.projectsGrid = document.querySelector('.projects-grid');
+        if (!this.projectsGrid) return;
+
+        this.cards = this.projectsGrid.querySelectorAll('.project-card');
+        this.currentIndex = 0;
+        this.startX = 0;
+        this.isSwiping = false;
+
+        // Only enable on mobile
+        if (window.innerWidth > 768) return;
+
+        this.setupMobileView();
+        this.setupEventListeners();
+    }
+
+    setupMobileView() {
+        // Add swipe indicator
+        this.indicator = document.createElement('div');
+        this.indicator.className = 'swipe-indicator';
+        this.cards.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = i === 0 ? 'dot active' : 'dot';
+            this.indicator.appendChild(dot);
+        });
+        this.projectsGrid.parentNode.appendChild(this.indicator);
+    }
+
+    setupEventListeners() {
+        this.projectsGrid.addEventListener('touchstart', (e) => {
+            this.startX = e.touches[0].clientX;
+            this.isSwiping = true;
+        }, { passive: true });
+
+        this.projectsGrid.addEventListener('touchmove', (e) => {
+            if (!this.isSwiping) return;
+        }, { passive: true });
+
+        this.projectsGrid.addEventListener('touchend', (e) => {
+            if (!this.isSwiping) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const diff = this.startX - endX;
+
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0 && this.currentIndex < this.cards.length - 1) {
+                    this.currentIndex++;
+                } else if (diff < 0 && this.currentIndex > 0) {
+                    this.currentIndex--;
+                }
+                this.scrollToCard();
+            }
+
+            this.isSwiping = false;
+        });
+    }
+
+    scrollToCard() {
+        const card = this.cards[this.currentIndex];
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        // Update indicator
+        this.indicator.querySelectorAll('.dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === this.currentIndex);
+        });
+    }
+}
+
+// ===== PULL-TO-REFRESH ANIMATION =====
+class PullToRefresh {
+    constructor() {
+        this.startY = 0;
+        this.pulling = false;
+        this.threshold = 100;
+
+        // Only on mobile and when at top of page
+        if (window.innerWidth > 768) return;
+
+        this.createIndicator();
+        this.setupEventListeners();
+    }
+
+    createIndicator() {
+        this.indicator = document.createElement('div');
+        this.indicator.className = 'pull-refresh-indicator';
+        this.indicator.innerHTML = `
+            <div class="pull-refresh-icon">🕉</div>
+            <span class="pull-refresh-text">Pull to refresh</span>
+        `;
+        document.body.prepend(this.indicator);
+    }
+
+    setupEventListeners() {
+        document.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                this.startY = e.touches[0].clientY;
+                this.pulling = true;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!this.pulling) return;
+
+            const currentY = e.touches[0].clientY;
+            const diff = currentY - this.startY;
+
+            if (diff > 0 && diff < this.threshold * 1.5) {
+                this.indicator.style.transform = `translateY(${Math.min(diff, this.threshold)}px)`;
+                this.indicator.style.opacity = Math.min(diff / this.threshold, 1);
+
+                if (diff > this.threshold) {
+                    this.indicator.classList.add('ready');
+                    this.indicator.querySelector('.pull-refresh-text').textContent = 'Release to refresh';
+                } else {
+                    this.indicator.classList.remove('ready');
+                    this.indicator.querySelector('.pull-refresh-text').textContent = 'Pull to refresh';
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            if (!this.pulling) return;
+
+            if (this.indicator.classList.contains('ready')) {
+                // Trigger refresh animation
+                this.indicator.classList.add('refreshing');
+                this.indicator.querySelector('.pull-refresh-text').textContent = 'Refreshing...';
+
+                // Simulate refresh
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                this.reset();
+            }
+
+            this.pulling = false;
+        });
+    }
+
+    reset() {
+        this.indicator.style.transform = 'translateY(0)';
+        this.indicator.style.opacity = '0';
+        this.indicator.classList.remove('ready', 'refreshing');
+    }
+}
+
+// Initialize all mobile enhancements
+document.addEventListener('DOMContentLoaded', () => {
+    new SmartHeader();
+    new MobileMenu();
+    new TouchFeedback();
+    new SwipeGestures();
+    new PullToRefresh();
 });
