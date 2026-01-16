@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Akshat - Student at IIT Jodhpur | A portfolio inspired by rich Indian heritage">
+    <title>Akshat | IIT Jodhpur</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Background Om Audio (plays automatically, no visible control) -->
+    <audio id="omSound" loop preload="auto">
+        <source src="om.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#hero" class="logo">अक्षत</a>
+            <ul>
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="sun-icon">☀</span>
+                <span class="moon-icon">☽</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <p class="sanskrit">॥ उत्तिष्ठत जाग्रत प्राप्य वरान्निबोधत ॥</p>
+            <h1>AKSHAT</h1>
+            <p class="subtitle">Student at IIT Jodhpur</p>
+            <p class="philosophy">Blending ancient wisdom with modern innovation</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">परिचय</p>
+                <h2>About Me</h2>
+                <div class="divider"></div>
+                <p>A journey from the heart of Bharat to the world of technology</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <div class="frame">
+                        <img src="profile.png" alt="Akshat">
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <h3>Hello, I'm Akshat</h3>
+                    <p>
+                        I am a B.Tech Electrical Engineering student at IIT Jodhpur (CPI: 8.47/10).
+                        My journey in technology is deeply rooted in the rich traditions of learning and innovation,
+                        bridging the gap between electrical systems and advanced AI solutions.
+                    </p>
+                    <p>
+                        I believe in building solutions that are not just technically sound but also
+                        carry the essence of thoughtful design. From data science to generative AI,
+                        my work reflects a commitment to excellence and a passion for solving real-world problems.
+                    </p>
+
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <div class="label">Institution</div>
+                            <div class="value">IIT Jodhpur</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Focus</div>
+                            <div class="value">Electrical Engineering</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Location</div>
+                            <div class="value">Rajasthan, India</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="label">Languages</div>
+                            <div class="value">Hindi, English</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">कर्म</p>
+                <h2>Projects</h2>
+                <div class="divider"></div>
+                <p>Work crafted with dedication and purpose</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="number">01</div>
+                    <h3>EmoTune</h3>
+                    <p>Emotion-Driven Music Player with FER-based detection and dynamic YouTube playlist generation.</p>
+                    <div class="project-tags">
+                        <span class="tag">Torch</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <a href="https://github.com/akspshat1/EmoTune" target="_blank" class="project-link">View Project
+                        →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="number">02</div>
+                    <h3>Bitcoin LSTM</h3>
+                    <p>Bitcoin price forecasting model (R2: 0.93) with reduced RMSE deviation via advanced
+                        preprocessing.</p>
+                    <div class="project-tags">
+                        <span class="tag">LSTM</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                    <a href="https://github.com/akspshat1/Bitcoin-LSTM" target="_blank" class="project-link">View
+                        Project →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="number">03</div>
+                    <h3>EffiPrune</h3>
+                    <p>Lightweight CNN Optimization reducing size by 30% with <1% accuracy loss using knowledge
+                            distillation.</p>
+                            <div class="project-tags">
+                                <span class="tag">CNN</span>
+                                <span class="tag">AI/ML</span>
+                                <span class="tag">Optimization</span>
+                            </div>
+                            <a href="https://github.com/akspshat1/Light_CNN_Pruning" target="_blank"
+                                class="project-link">View Project →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="number">04</div>
+                    <h3>LanCast</h3>
+                    <p>Low-latency P2P screen & camera mirroring system using WebRTC and C++17 WebSocket signaling.</p>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">WebRTC</span>
+                        <span class="tag">HTML5</span>
+                    </div>
+                    <a href="https://github.com/akspshat1/LanCast" target="_blank" class="project-link">View Project
+                        →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section - Premium Hawan Theme -->
+    <section id="experience">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">अनुभव</p>
+                <h2>Experience</h2>
+                <div class="divider"></div>
+                <p>Offerings to the sacred fire of knowledge</p>
+            </div>
+
+
+            <!-- Experience Flow -->
+            <div class="experience-flow">
+                <div class="experience-item fade-in">
+                    <div class="agni-block">
+                        <img src="hawan.gif" alt="Hawan Fire" class="hawan-gif">
+                        <div class="year-badge">2025</div>
+                    </div>
+                    <div class="exp-content">
+                        <h3>AI/ML Intern</h3>
+                        <p class="exp-company">Qualitysoft Inc. Japan</p>
+                        <p class="exp-desc">Engineered RAG pipelines using Langgraph. Integreted DeepEval for QA. Built
+                            comparative analysis framework for Flowise/Langgraph.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="agni-block">
+                        <img src="hawan.gif" alt="Hawan Fire" class="hawan-gif">
+                        <div class="year-badge">2025</div>
+                    </div>
+                    <div class="exp-content">
+                        <h3>Data Science Intern</h3>
+                        <p class="exp-company">Government of Rajasthan</p>
+                        <p class="exp-desc">Led data-driven planning for CT & MRI tender. Optimized budgets across 30+
+                            districts. Reduced CT scan turnaround time by 32%.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="agni-block">
+                        <img src="hawan.gif" alt="Hawan Fire" class="hawan-gif">
+                        <div class="year-badge">2024</div>
+                    </div>
+                    <div class="exp-content">
+                        <h3>AI Intern</h3>
+                        <p class="exp-company">DevOPS FARM</p>
+                        <p class="exp-desc">Built agentic AI psychologist. Integrated emotion recognition. 83% of 200
+                            surveyed participants preferred the AI bot.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="agni-block">
+                        <img src="hawan.gif" alt="Hawan Fire" class="hawan-gif">
+                        <div class="year-badge">2023</div>
+                    </div>
+                    <div class="exp-content">
+                        <h3>Renewable Energy Analyst</h3>
+                        <p class="exp-company">IIT Jodhpur</p>
+                        <p class="exp-desc">Analyzed renewable energy project performance. Built LCOE models for
+                            Jodhpur. Identified optimal payback periods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">विद्या</p>
+                <h2>Skills & Expertise</h2>
+                <div class="divider"></div>
+                <p>Technologies I work with to bring ideas to life</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Languages</h3>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">R</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">C++</div>
+                    <div class="skill-item">C</div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Data Tech</h3>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">PostgreSQL</div>
+                    <div class="skill-item">PowerBI</div>
+                    <div class="skill-item">Excel</div>
+                    <div class="skill-item">RStudios</div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>AI/ML</h3>
+                    <div class="skill-item">PyTorch</div>
+                    <div class="skill-item">Scikit-Learn</div>
+                    <div class="skill-item">LangChain</div>
+                    <div class="skill-item">Llamaindex</div>
+                    <div class="skill-item">RAG</div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Certifications</h3>
+                    <div class="skill-item">Adv SQL (Hackerrank)</div>
+                    <div class="skill-item">Data Science (Cisco)</div>
+                    <div class="skill-item">GenAI (Google)</div>
+                    <div class="skill-item">Top 2% (MMVY)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section - Majestic Hinduism Theme -->
+    <section id="hobbies">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">कला और अभिरुचि</p>
+                <h2>Hobbies & Extracurriculars</h2>
+                <div class="divider"></div>
+                <p>Pathways to inner joy and creative expression</p>
+            </div>
+
+            <div class="hobbies-grid">
+                <div class="hobby-card fade-in">
+                    <div class="hobby-icon-wrapper">
+                        <div class="hobby-icon">
+                            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <!-- Traditional scroll/palm leaf manuscript -->
+                                <path d="M12 8c0-2 2-4 6-4h28c4 0 6 2 6 4v48c0 2-2 4-6 4H18c-4 0-6-2-6-4V8z"
+                                    stroke-linecap="round" />
+                                <path d="M20 16h24M20 24h24M20 32h18M20 40h20" stroke-linecap="round" opacity="0.7" />
+                                <circle cx="32" cy="52" r="3" fill="currentColor" opacity="0.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Reading</h3>
+                    <p>Absorbing wisdom from the ancients. Traveling through time and space through words.</p>
+                </div>
+                <div class="hobby-card fade-in">
+                    <div class="hobby-icon-wrapper">
+                        <div class="hobby-icon">
+                            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <!-- Sacred water/Ganga waves -->
+                                <path d="M8 24c8-8 16 0 24-8s16 0 24-8" stroke-linecap="round" />
+                                <path d="M8 36c8-8 16 0 24-8s16 0 24-8" stroke-linecap="round" opacity="0.7" />
+                                <path d="M8 48c8-8 16 0 24-8s16 0 24-8" stroke-linecap="round" opacity="0.5" />
+                                <circle cx="32" cy="40" r="2" fill="currentColor" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Swimming</h3>
+                    <p>Finding flow and rhythm in water. A disciplined pursuit of physical and mental endurance.</p>
+                </div>
+                <div class="hobby-card fade-in">
+                    <div class="hobby-icon-wrapper">
+                        <div class="hobby-icon">
+                            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <!-- Lotus/Namaste hands -->
+                                <path d="M32 56V40" stroke-linecap="round" />
+                                <path d="M32 8c0 8-12 16-12 24c0 6 5 10 12 10s12-4 12-10c0-8-12-16-12-24z"
+                                    stroke-linejoin="round" />
+                                <path d="M26 28c2 2 4 3 6 3s4-1 6-3" stroke-linecap="round" opacity="0.7" />
+                                <circle cx="32" cy="20" r="2" fill="currentColor" opacity="0.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Student Wellbeing</h3>
+                    <p>Assistant Head & Student Guide. Fostering a supportive community at IIT Jodhpur.</p>
+                </div>
+                <div class="hobby-card fade-in">
+                    <div class="hobby-icon-wrapper">
+                        <div class="hobby-icon">
+                            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <!-- Ceremonial Diya/lamp -->
+                                <ellipse cx="32" cy="48" rx="16" ry="6" />
+                                <path d="M20 48c0-8 5-12 12-12s12 4 12 12" stroke-linecap="round" />
+                                <path d="M32 36V24" stroke-linecap="round" />
+                                <path d="M32 24c-3-6 0-12 0-16c0 4 3 10 0 16z" fill="currentColor" opacity="0.6" />
+                                <path d="M28 20c-2-2-1-6 0-8" stroke-linecap="round" opacity="0.4" />
+                                <path d="M36 20c2-2 1-6 0-8" stroke-linecap="round" opacity="0.4" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Prometeo</h3>
+                    <p>Resource Head. Managing resources and logistics for the technical festival.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <p class="overline">संपर्क</p>
+                <h2>Get In Touch</h2>
+                <div class="divider"></div>
+                <p>Let's create something meaningful together</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Let's Connect</h3>
+                    <p>
+                        I'm always open to discussing new projects, creative ideas,
+                        or opportunities to be part of your vision. Feel free to reach out.
+                    </p>
+
+                    <div class="contact-item">
+                        <span class="icon">✉</span>
+                        <span>B22EE087@iitj.ac.in</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">◎</span>
+                        <span>IIT Jodhpur, Rajasthan, India</span>
+                    </div>
+
+                    <div class="contact-actions">
+                        <div class="social-links">
+                            <a href="https://github.com/akspshat1" class="social-link" target="_blank">GH</a>
+                            <a href="https://www.linkedin.com/in/akspshat/" class="social-link" target="_blank">LI</a>
+                        </div>
+                        <button id="viewResumeBtn" class="resume-btn">View Resume</button>
+                    </div>
+                </div>
+
+                <form class="contact-form fade-in">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="sanskrit">॥ शुभम् ॥</div>
+        <p>© 2026 Akshat | Crafted with devotion</p>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>My Resume</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <iframe src="resume.pdf" width="100%" height="100%"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
