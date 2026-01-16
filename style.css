@@ -3053,3 +3053,15 @@ nav.nav-hidden {
 .journey-svg path {
   animation: dash 30s linear infinite;
 }
+
+/* Mobile Sanskrit Fix */
+@media (max-width: 600px) {
+  .sanskrit {
+    font-size: 1rem !important;
+    /* Reduce size to prevent wrap */
+    letter-spacing: 0 !important;
+    /* Tighten spacing */
+    white-space: nowrap;
+    /* Try to keep on one line */
+  }
+}
