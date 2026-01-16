@@ -3008,3 +3008,10 @@ nav.nav-hidden {
 [data-theme="dark"] .pull-refresh-text {
   color: var(--gold-light);
 }
+
+/* Hide Mobile Sidebar on Desktop */
+@media (min-width: 769px) {
+  .mobile-sidebar {
+    display: none !important;
+  }
+}
