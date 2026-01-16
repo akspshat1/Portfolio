@@ -497,10 +497,11 @@ nav a.active::after {
   overflow: hidden;
   transition: var(--theme-transition), transform 0.3s ease;
   margin-left: var(--spacing-sm);
+  transform: rotate(180deg);
 }
 
 .theme-toggle:hover {
-  transform: scale(1.1);
+  transform: rotate(180deg) scale(1.1);
   box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
 }
 
