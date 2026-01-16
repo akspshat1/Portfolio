@@ -1729,18 +1729,7 @@ footer p {
 }
 
 /* Subtle texture */
-#hobbies::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(var(--saffron-light) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.05;
-  pointer-events: none;
-}
+
 
 #hobbies .section-header .overline {
   color: var(--saffron-light);
@@ -2729,11 +2718,7 @@ nav.nav-hidden {
     transition-delay: 0.35s;
   }
 
-  nav ul.mobile-open li:nth-child(6) {
-    transition-delay: 0.35s;
-  }
-
-  nav ul.mobile-open li:nth-child(7) {
+  .mobile-sidebar.mobile-open .mobile-sidebar-link:nth-child(7) {
     transition-delay: 0.4s;
   }
 
@@ -2810,16 +2795,12 @@ nav.nav-hidden {
     overflow-x: auto;
     gap: 1.5rem;
     padding: 1rem 0.5rem 2rem 0.5rem;
-    /* Bottom padding for shadows */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     width: 100vw;
     margin-left: -1rem;
-    /* Counteract nav padding if container bounded, or just width */
     padding-left: 1.5rem;
-    /* Start padding */
     padding-right: 1.5rem;
-    /* End padding */
   }
 
   /* Reset item styles for card layout */
@@ -2830,10 +2811,8 @@ nav.nav-hidden {
     max-width: 350px;
     scroll-snap-align: center;
     flex-direction: column !important;
-    /* Ensure column layout */
     align-items: center;
     justify-content: flex-start;
-    /* Start from top */
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -2842,21 +2821,18 @@ nav.nav-hidden {
   .experience-item:nth-child(odd) .agni-block,
   .experience-item:nth-child(even) .agni-block {
     order: -1 !important;
-    /* Always First */
     margin: 0 0 1rem 0 !important;
-    /* Margin bottom only */
   }
 
   .experience-item .exp-content,
   .experience-item:nth-child(odd) .exp-content,
   .experience-item:nth-child(even) .exp-content {
     order: 100 !important;
-    /* Always Last */
     text-align: center !important;
     margin-top: 0 !important;
   }
 
-  /* Hide the connected path line on mobile as it breaks flow */
+  /* Hide the connected path line on mobile */
   .journey-svg {
     display: none;
   }
@@ -2879,10 +2855,8 @@ nav.nav-hidden {
   .skill-category {
     flex: 0 0 80%;
     scroll-snap-align: center;
-    background: rgba(255, 255, 255, 0.5);
     padding: 1.5rem;
     border-radius: 20px;
-    border: 1px solid rgba(224, 112, 32, 0.2);
   }
 
   /* 3. Hobbies Grid */
@@ -2901,11 +2875,11 @@ nav.nav-hidden {
 
   .hobby-card {
     flex: 0 0 80%;
-    /* Card Width */
     scroll-snap-align: center;
     margin: 0;
   }
 
+  /* Projects Grid */
   .projects-grid {
     display: flex;
     overflow-x: auto;
@@ -2919,10 +2893,48 @@ nav.nav-hidden {
     flex: 0 0 85%;
     scroll-snap-align: center;
   }
+
+  /* Contact Actions - Horizontal Alignment */
+  .contact-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Left align */
+    gap: 0.5rem;
+    /* Reduced gap to fit */
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+/* Dark Mode Skills Fix - Unified Background */
+[data-theme="dark"] .skill-category {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .skill-item {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .skill-item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Swipe Indicator Dots */
 .swipe-indicator .dot {
+
   width: 8px;
   height: 8px;
   border-radius: 50%;
