@@ -281,6 +281,67 @@ class AmbientAudio {
 
         // Create entrance overlay for autoplay
         this.createEntranceOverlay();
+
+        // Create audio control button (always visible)
+        this.createAudioControl();
+    }
+
+    createAudioControl() {
+        this.btn = document.createElement('button');
+        this.btn.className = 'audio-control';
+
+        // SVG Icons
+        this.iconSound = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>`;
+        this.iconMute = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7 9v6h4l5 5V4l-5 5H7z"/><path d="M16 11l2 2m0-2l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+
+        this.btn.innerHTML = this.iconSound;
+        this.btn.title = 'Toggle Sound';
+        this.btn.style.cssText = `
+            position: fixed;
+            bottom: 3.5rem;
+            right: 1.5rem;
+            z-index: 10000;
+            background: transparent;
+            color: var(--gold, #c9a227);
+            border: 1px solid var(--gold, #c9a227);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0; 
+            pointer-events: none; /* Hidden until entrance done */
+        `;
+
+        // Hover effect
+        this.btn.onmouseenter = () => {
+            this.btn.style.transform = 'scale(1.1)';
+            this.btn.style.boxShadow = '0 6px 15px rgba(201, 162, 39, 0.4)';
+        };
+        this.btn.onmouseleave = () => {
+            this.btn.style.transform = 'scale(1)';
+            this.btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+        };
+
+        this.btn.onclick = () => this.toggleAudio();
+        document.body.appendChild(this.btn);
+    }
+
+    toggleAudio() {
+        if (this.audio.paused) {
+            this.audio.play();
+            this.btn.innerHTML = this.iconSound;
+            this.btn.style.opacity = '1';
+        } else {
+            this.audio.pause();
+            this.btn.innerHTML = this.iconMute;
+            this.btn.style.opacity = '0.7';
+        }
     }
 
     createEntranceOverlay() {
@@ -518,9 +579,22 @@ class AmbientAudio {
         if (this.audio && !this.hasStarted) {
             this.audio.play().then(() => {
                 this.hasStarted = true;
+                if (this.btn) {
+                    this.btn.style.opacity = '1';
+                    this.btn.style.pointerEvents = 'auto';
+                }
             }).catch(e => {
                 console.log('Audio autoplay blocked - user interaction required');
+                if (this.btn) {
+                    this.btn.style.opacity = '1';
+                    this.btn.style.pointerEvents = 'auto';
+                    this.btn.innerHTML = this.iconMute; // State blocked/paused
+                }
             });
+        } else if (this.btn) {
+            // If already started or no audio, show button anyway
+            this.btn.style.opacity = '1';
+            this.btn.style.pointerEvents = 'auto';
         }
     }
 }
