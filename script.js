@@ -71,6 +71,9 @@ class KumkumChawal {
     }
 
     playBell() {
+        // Check global mute state
+        if (window.portfolioMuted) return;
+
         // Clone and play to allow overlapping sounds
         const bellClone = this.bellSound.cloneNode();
         bellClone.volume = 0.0125;
@@ -337,10 +340,12 @@ class AmbientAudio {
             this.audio.play();
             this.btn.innerHTML = this.iconSound;
             this.btn.style.opacity = '1';
+            window.portfolioMuted = false;
         } else {
             this.audio.pause();
             this.btn.innerHTML = this.iconMute;
             this.btn.style.opacity = '0.7';
+            window.portfolioMuted = true;
         }
     }
 
@@ -589,6 +594,7 @@ class AmbientAudio {
                     this.btn.style.opacity = '1';
                     this.btn.style.pointerEvents = 'auto';
                     this.btn.innerHTML = this.iconMute; // State blocked/paused
+                    window.portfolioMuted = true;
                 }
             });
         } else if (this.btn) {
