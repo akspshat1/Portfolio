@@ -3,6 +3,9 @@
 // Warm · Luxurious · Transcendent
 // ========================================
 
+// Initialize muted state
+window.portfolioMuted = true;
+
 // ===== FLOATING PARTICLES =====
 class FloatingParticles {
     constructor() {
@@ -297,7 +300,7 @@ class AmbientAudio {
         this.iconSound = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>`;
         this.iconMute = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7 9v6h4l5 5V4l-5 5H7z"/><path d="M16 11l2 2m0-2l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
 
-        this.btn.innerHTML = this.iconSound;
+        this.btn.innerHTML = this.iconMute; // Start with mute icon
         this.btn.title = 'Toggle Sound';
         this.btn.style.cssText = `
             position: fixed;
@@ -318,6 +321,7 @@ class AmbientAudio {
             justify-content: center;
             transition: all 0.3s ease;
             opacity: 0; 
+
             pointer-events: none; /* Hidden until entrance done */
         `;
 
@@ -581,25 +585,9 @@ class AmbientAudio {
         }, 1500);
 
         // Start playing Om silently in background
-        if (this.audio && !this.hasStarted) {
-            this.audio.play().then(() => {
-                this.hasStarted = true;
-                if (this.btn) {
-                    this.btn.style.opacity = '1';
-                    this.btn.style.pointerEvents = 'auto';
-                }
-            }).catch(e => {
-                console.log('Audio autoplay blocked - user interaction required');
-                if (this.btn) {
-                    this.btn.style.opacity = '1';
-                    this.btn.style.pointerEvents = 'auto';
-                    this.btn.innerHTML = this.iconMute; // State blocked/paused
-                    window.portfolioMuted = true;
-                }
-            });
-        } else if (this.btn) {
-            // If already started or no audio, show button anyway
-            this.btn.style.opacity = '1';
+        // Show audio control button (muted state)
+        if (this.btn) {
+            this.btn.style.opacity = '0.7';
             this.btn.style.pointerEvents = 'auto';
         }
     }
