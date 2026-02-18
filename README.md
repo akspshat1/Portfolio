@@ -12,3 +12,13 @@ You are free to use, modify, and distribute this software under the terms of the
 If you deploy or provide this software as a network service, you must also provide the complete corresponding source code.
 
 See the `LICENSE` file for more details.
+
+## Running Locally
+
+You can run this project locally using `npx`:
+
+```bash
+npx serve
+```
+
+This will start a local server (usually at http://localhost:3000) where you can view the portfolio.
