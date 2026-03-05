@@ -4,66 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Akshat — IIT Jodhpur | AI/ML Engineer | Immersive 3D Portfolio">
+    <meta name="description" content="Akshat — IIT Jodhpur | AI/ML Engineer | Portfolio">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230a0a1a'/><text x='32' y='46' font-family='monospace' font-size='36' fill='%234361ee' text-anchor='middle'>A</text></svg>">
-    <title>Akshat | 3D Portfolio</title>
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231a1a1a'/><text x='32' y='46' font-family='serif' font-size='36' fill='%23C45D3E' text-anchor='middle'>A</text></svg>">
+    <title>Akshat — Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-        }
-    }
-    </script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Cursor follower -->
+    <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Three.js Canvas (full viewport, behind everything) -->
-    <canvas id="journey-canvas"></canvas>
-
-    <!-- Scroll spacer: provides scroll height for the 3D tunnel journey -->
-    <div id="scroll-spacer" style="height: 1200vh; pointer-events: none;"></div>
-
-    <!-- Scroll Progress -->
-    <div class="scroll-progress">
-        <div class="scroll-progress-bar" id="scrollBar"></div>
-    </div>
-
-    <!-- Nav Dots -->
-    <nav class="nav-dots" id="navDots">
-        <a href="#" class="nav-dot active" data-section="0" data-label="Home"></a>
-        <a href="#" class="nav-dot" data-section="1" data-label="About"></a>
-        <a href="#" class="nav-dot" data-section="2" data-label="Projects"></a>
-        <a href="#" class="nav-dot" data-section="3" data-label="Experience"></a>
-        <a href="#" class="nav-dot" data-section="4" data-label="Skills"></a>
-        <a href="#" class="nav-dot" data-section="5" data-label="Hobbies"></a>
-        <a href="#" class="nav-dot" data-section="6" data-label="Contact"></a>
-    </nav>
-
-    <!-- Top Nav -->
-    <header class="top-nav" id="topNav">
-        <a href="#" class="logo" data-section="0">AKSHAT</a>
-        <div class="nav-links">
-            <a href="#" data-section="1">About</a>
-            <a href="#" data-section="2">Projects</a>
-            <a href="#" data-section="3">Experience</a>
-            <a href="#" data-section="4">Skills</a>
-            <a href="#" data-section="6">Contact</a>
-        </div>
+    <!-- Navigation -->
+    <header class="nav" id="nav">
+        <a href="#hero" class="nav-logo">A<span class="logo-dot">.</span></a>
+        <nav class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
@@ -71,343 +39,357 @@
 
     <!-- Mobile Sidebar -->
     <div class="mobile-sidebar" id="mobileSidebar">
-        <a href="#" data-section="0">Home</a>
-        <a href="#" data-section="1">About</a>
-        <a href="#" data-section="2">Projects</a>
-        <a href="#" data-section="3">Experience</a>
-        <a href="#" data-section="4">Skills</a>
-        <a href="#" data-section="5">Hobbies</a>
-        <a href="#" data-section="6">Contact</a>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#beyond">Beyond Code</a>
+        <a href="#contact">Contact</a>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Empty scroll spacer — this drives the entire journey -->
-    <div id="scroll-spacer"></div>
-
-    <!-- ===========================
-         FIXED CONTENT PANELS
-         Each panel appears at its scroll waypoint
-         =========================== -->
-
-    <!-- 0: HERO -->
-    <div class="journey-panel active" data-panel="0">
-        <div class="panel-inner hero-content">
-            <div class="hero-overline">
-                <span class="line"></span>
-                <span class="overline-text">WELCOME TO MY UNIVERSE</span>
-                <span class="line"></span>
-            </div>
-            <h1 class="hero-name">
-                <span class="char">A</span><span class="char">K</span><span class="char">S</span><span
-                    class="char">H</span><span class="char">A</span><span class="char">T</span>
-            </h1>
-            <p class="hero-subtitle" id="typewriter"></p>
-            <p class="hero-tagline">Blending AI Innovation with Electrical Engineering</p>
-            <div class="hero-cta">
-                <a href="#" data-section="2" class="btn btn-primary">
-                    <span>Explore My Work</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17l9.2-9.2M17 17V7.8H7.8" />
-                    </svg>
-                </a>
-                <a href="#" data-section="6" class="btn btn-ghost">Get In Touch</a>
-            </div>
-            <div class="scroll-hint">
-                <span>Scroll to begin the journey</span>
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="hero-inner">
+                <p class="hero-label fade-in">
+                    <span class="label-line"></span>
+                    <span class="label-text">PORTFOLIO · 2025</span>
+                    <span class="label-line"></span>
+                </p>
+                <h1 class="hero-name fade-in">
+                    <span class="char-wrap"><span class="char">A</span></span><span class="char-wrap"><span
+                            class="char">k</span></span><span class="char-wrap"><span class="char">s</span></span><span
+                        class="char-wrap"><span class="char">h</span></span><span class="char-wrap"><span
+                            class="char">a</span></span><span class="char-wrap"><span class="char">t</span></span>
+                </h1>
+                <p class="hero-typed fade-in" id="typewriter"></p>
+                <p class="hero-tagline fade-in">Blending AI Innovation with Electrical Engineering</p>
+                <div class="hero-cta fade-in">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="scroll-indicator fade-in">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
 
-    <!-- 1: ABOUT -->
-    <div class="journey-panel" data-panel="1">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">01</span><span
-                    class="label-line"></span><span>ABOUT
-                    ME</span></div>
-            <div class="about-grid stagger-in">
-                <div class="about-image-wrapper">
-                    <div class="about-image-frame">
-                        <img src="profile.png" alt="Akshat" class="about-img">
-                        <div class="image-glow"></div>
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title fade-in">About <em>Me</em></h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-photo fade-in">
+                        <div class="photo-frame">
+                            <img src="profile.png" alt="Akshat" loading="lazy">
+                        </div>
                     </div>
-                </div>
-                <div class="about-text">
-                    <h2>Hello, I'm <span class="accent">Akshat</span></h2>
-                    <p>I am a B.Tech Electrical Engineering student at <strong>IIT Jodhpur</strong> (CPI: 8.47/10). My
-                        journey in technology bridges the gap between electrical systems and advanced AI solutions.</p>
-                    <p>I believe in building solutions that are not just technically sound but carry the essence of
-                        thoughtful design.</p>
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <div class="stat-value">IIT</div>
-                            <div class="stat-label">Jodhpur</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">8.47</div>
-                            <div class="stat-label">CPI / 10</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">EE</div>
-                            <div class="stat-label">Electrical</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">AI</div>
-                            <div class="stat-label">& ML Focus</div>
+                    <div class="about-content fade-in">
+                        <p class="about-lead">Hello, I'm <strong>Akshat</strong></p>
+                        <p>I am a B.Tech Electrical Engineering student at <strong>IIT Jodhpur</strong> (CPI:
+                            8.47/10). My journey in technology bridges the gap between electrical systems and advanced
+                            AI
+                            solutions.</p>
+                        <p>I believe in building solutions that are not just technically sound but carry the essence of
+                            thoughtful design.</p>
+                        <div class="stat-row">
+                            <div class="stat">
+                                <span class="stat-val">IIT</span>
+                                <span class="stat-lbl">Jodhpur</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-val">8.47</span>
+                                <span class="stat-lbl">CPI / 10</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-val">EE</span>
+                                <span class="stat-lbl">Electrical</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-val">AI</span>
+                                <span class="stat-lbl">& ML Focus</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- 2: PROJECTS -->
-    <div class="journey-panel" data-panel="2">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">02</span><span
-                    class="label-line"></span><span>PROJECTS</span></div>
-            <h2 class="section-title stagger-in">Work crafted with <span class="accent">dedication</span></h2>
-            <div class="projects-grid stagger-in">
-                <div class="project-card" data-tilt>
-                    <div class="card-glow"></div>
-                    <div class="project-number">01</div>
-                    <h3>EmoTune</h3>
-                    <p>Emotion-Driven Music Player with FER-based detection and dynamic YouTube playlist generation.</p>
-                    <div class="tags"><span class="tag">Torch</span><span class="tag">OpenCV</span><span
-                            class="tag">Streamlit</span></div>
-                    <a href="https://github.com/akspshat1/EmoTune" target="_blank" class="project-link">View Project
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M7 17l9.2-9.2M17 17V7.8H7.8" />
-                        </svg></a>
+        <!-- PROJECTS -->
+        <section class="section section-alt" id="projects">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title fade-in">Selected <em>Work</em></h2>
                 </div>
-                <div class="project-card" data-tilt>
-                    <div class="card-glow"></div>
-                    <div class="project-number">02</div>
-                    <h3>Bitcoin LSTM</h3>
-                    <p>Bitcoin price forecasting model (R²: 0.93) with reduced RMSE deviation via advanced
-                        preprocessing.</p>
-                    <div class="tags"><span class="tag">LSTM</span><span class="tag">Python</span><span class="tag">Data
-                            Science</span></div>
-                    <a href="https://github.com/akspshat1/Bitcoin-LSTM" target="_blank" class="project-link">View
-                        Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M7 17l9.2-9.2M17 17V7.8H7.8" />
-                        </svg></a>
-                </div>
-                <div class="project-card" data-tilt>
-                    <div class="card-glow"></div>
-                    <div class="project-number">03</div>
-                    <h3>EffiPrune</h3>
-                    <p>Lightweight CNN Optimization reducing size by 30% with <1% accuracy loss using knowledge
-                            distillation.</p>
-                            <div class="tags"><span class="tag">CNN</span><span class="tag">AI/ML</span><span
-                                    class="tag">Optimization</span></div>
-                            <a href="https://github.com/akspshat1/Light_CNN_Pruning" target="_blank"
-                                class="project-link">View Project <svg width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M7 17l9.2-9.2M17 17V7.8H7.8" />
-                                </svg></a>
-                </div>
-                <div class="project-card" data-tilt>
-                    <div class="card-glow"></div>
-                    <div class="project-number">04</div>
-                    <h3>LanCast</h3>
-                    <p>Low-latency P2P screen & camera mirroring system using WebRTC and C++17 WebSocket signaling.</p>
-                    <div class="tags"><span class="tag">C++</span><span class="tag">WebRTC</span><span
-                            class="tag">HTML5</span></div>
-                    <a href="https://github.com/akspshat1/LanCast" target="_blank" class="project-link">View Project
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M7 17l9.2-9.2M17 17V7.8H7.8" />
-                        </svg></a>
+                <div class="projects-list">
+                    <article class="project-row fade-in">
+                        <div class="project-meta">
+                            <span class="project-num">01</span>
+                            <div class="project-tags">
+                                <span>Torch</span><span>OpenCV</span><span>Streamlit</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h3><a href="https://github.com/akspshat1/EmoTune" target="_blank"
+                                    rel="noopener">EmoTune</a></h3>
+                            <p>Emotion-Driven Music Player with FER-based detection and dynamic YouTube playlist
+                                generation.</p>
+                        </div>
+                        <a href="https://github.com/akspshat1/EmoTune" target="_blank" class="project-arrow"
+                            rel="noopener" aria-label="View EmoTune project">→</a>
+                    </article>
+                    <article class="project-row fade-in">
+                        <div class="project-meta">
+                            <span class="project-num">02</span>
+                            <div class="project-tags">
+                                <span>LSTM</span><span>Python</span><span>Data Science</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h3><a href="https://github.com/akspshat1/Bitcoin-LSTM" target="_blank"
+                                    rel="noopener">Bitcoin LSTM</a></h3>
+                            <p>Bitcoin price forecasting model (R²: 0.93) with reduced RMSE deviation via advanced
+                                preprocessing.</p>
+                        </div>
+                        <a href="https://github.com/akspshat1/Bitcoin-LSTM" target="_blank" class="project-arrow"
+                            rel="noopener" aria-label="View Bitcoin LSTM project">→</a>
+                    </article>
+                    <article class="project-row fade-in">
+                        <div class="project-meta">
+                            <span class="project-num">03</span>
+                            <div class="project-tags">
+                                <span>CNN</span><span>AI/ML</span><span>Optimization</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h3><a href="https://github.com/akspshat1/Light_CNN_Pruning" target="_blank"
+                                    rel="noopener">EffiPrune</a></h3>
+                            <p>Lightweight CNN Optimization reducing size by 30% with &lt;1% accuracy loss using
+                                knowledge distillation.</p>
+                        </div>
+                        <a href="https://github.com/akspshat1/Light_CNN_Pruning" target="_blank" class="project-arrow"
+                            rel="noopener" aria-label="View EffiPrune project">→</a>
+                    </article>
+                    <article class="project-row fade-in">
+                        <div class="project-meta">
+                            <span class="project-num">04</span>
+                            <div class="project-tags">
+                                <span>C++</span><span>WebRTC</span><span>HTML5</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h3><a href="https://github.com/akspshat1/LanCast" target="_blank"
+                                    rel="noopener">LanCast</a></h3>
+                            <p>Low-latency P2P screen & camera mirroring system using WebRTC and C++17 WebSocket
+                                signaling.</p>
+                        </div>
+                        <a href="https://github.com/akspshat1/LanCast" target="_blank" class="project-arrow"
+                            rel="noopener" aria-label="View LanCast project">→</a>
+                    </article>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- 3: EXPERIENCE -->
-    <div class="journey-panel" data-panel="3">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">03</span><span
-                    class="label-line"></span><span>EXPERIENCE</span></div>
-            <h2 class="section-title stagger-in">The <span class="accent">journey</span> so far</h2>
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                <div class="timeline-item stagger-in left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-year">2025</div>
-                        <h3>AI/ML Intern</h3>
-                        <p class="timeline-company">Qualitysoft Inc. Japan</p>
-                        <p>Engineered RAG pipelines using Langgraph. Integrated DeepEval for QA. Built comparative
-                            analysis framework for Flowise/Langgraph.</p>
-                    </div>
+        <!-- EXPERIENCE -->
+        <section class="section" id="experience">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title fade-in">Experience</h2>
                 </div>
-                <div class="timeline-item stagger-in right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-year">2025</div>
-                        <h3>Data Science Intern</h3>
-                        <p class="timeline-company">Government of Rajasthan</p>
-                        <p>Led data-driven planning for CT & MRI tender. Optimized budgets across 30+ districts. Reduced
-                            CT scan turnaround time by 32%.</p>
+                <div class="timeline">
+                    <div class="timeline-entry fade-in">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-content">
+                            <h3>AI/ML Intern</h3>
+                            <p class="timeline-company">Qualitysoft Inc. Japan</p>
+                            <p>Engineered RAG pipelines using Langgraph. Integrated DeepEval for QA. Built comparative
+                                analysis framework for Flowise/Langgraph.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item stagger-in left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-year">2024</div>
-                        <h3>AI Intern</h3>
-                        <p class="timeline-company">DevOPS FARM</p>
-                        <p>Built agentic AI psychologist. Integrated emotion recognition. 83% of 200 surveyed
-                            participants preferred the AI bot.</p>
+                    <div class="timeline-entry fade-in">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-content">
+                            <h3>Data Science Intern</h3>
+                            <p class="timeline-company">Government of Rajasthan</p>
+                            <p>Led data-driven planning for CT & MRI tender. Optimized budgets across 30+ districts.
+                                Reduced CT scan turnaround time by 32%.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item stagger-in right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-year">2023</div>
-                        <h3>Energy Analyst</h3>
-                        <p class="timeline-company">IIT Jodhpur</p>
-                        <p>Analyzed renewable energy project performance. Built LCOE models for Jodhpur. Identified
-                            optimal payback periods.</p>
+                    <div class="timeline-entry fade-in">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-content">
+                            <h3>AI Intern</h3>
+                            <p class="timeline-company">DevOPS FARM</p>
+                            <p>Built agentic AI psychologist. Integrated emotion recognition. 83% of 200 surveyed
+                                participants preferred the AI bot.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-entry fade-in">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-content">
+                            <h3>Energy Analyst</h3>
+                            <p class="timeline-company">IIT Jodhpur</p>
+                            <p>Analyzed renewable energy project performance. Built LCOE models for Jodhpur. Identified
+                                optimal payback periods.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- 4: SKILLS -->
-    <div class="journey-panel" data-panel="4">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">04</span><span
-                    class="label-line"></span><span>SKILLS
-                    & EXPERTISE</span></div>
-            <h2 class="section-title stagger-in">Technologies I <span class="accent">wield</span></h2>
-            <div class="skills-grid stagger-in">
-                <div class="skill-category">
-                    <h3><span class="cat-icon">⟨/⟩</span> Languages</h3>
-                    <div class="skill-items"><span class="skill-tag">Python</span><span class="skill-tag">R</span><span
-                            class="skill-tag">SQL</span><span class="skill-tag">C++</span><span
-                            class="skill-tag">C</span></div>
+        <!-- SKILLS -->
+        <section class="section section-alt" id="skills">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title fade-in">Skills & <em>Expertise</em></h2>
                 </div>
-                <div class="skill-category">
-                    <h3><span class="cat-icon">◈</span> Data Tech</h3>
-                    <div class="skill-items"><span class="skill-tag">MySQL</span><span
-                            class="skill-tag">PostgreSQL</span><span class="skill-tag">PowerBI</span><span
-                            class="skill-tag">Excel</span><span class="skill-tag">RStudios</span></div>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="cat-icon">◉</span> AI / ML</h3>
-                    <div class="skill-items"><span class="skill-tag">PyTorch</span><span
-                            class="skill-tag">Scikit-Learn</span><span class="skill-tag">LangChain</span><span
-                            class="skill-tag">Llamaindex</span><span class="skill-tag">RAG</span></div>
-                </div>
-                <div class="skill-category">
-                    <h3><span class="cat-icon">✦</span> Certifications</h3>
-                    <div class="skill-items"><span class="skill-tag">Adv SQL (Hackerrank)</span><span
-                            class="skill-tag">Data Science (Cisco)</span><span class="skill-tag">GenAI
-                            (Google)</span><span class="skill-tag">Top 2% (MMVY)</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5: HOBBIES -->
-    <div class="journey-panel" data-panel="5">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">05</span><span
-                    class="label-line"></span><span>BEYOND
-                    CODE</span></div>
-            <h2 class="section-title stagger-in">Hobbies & <span class="accent">Extracurriculars</span></h2>
-            <div class="hobbies-grid stagger-in">
-                <div class="hobby-card">
-                    <div class="hobby-icon">📖</div>
-                    <h3>Reading</h3>
-                    <p>Absorbing wisdom from the ancients. Traveling through time and space through words.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🏊</div>
-                    <h3>Swimming</h3>
-                    <p>Finding flow and rhythm in water. A disciplined pursuit of physical and mental endurance.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🤝</div>
-                    <h3>Student Wellbeing</h3>
-                    <p>Assistant Head & Student Guide. Fostering a supportive community at IIT Jodhpur.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🔥</div>
-                    <h3>Prometeo</h3>
-                    <p>Resource Head. Managing resources and logistics for the technical festival.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6: CONTACT -->
-    <div class="journey-panel" data-panel="6">
-        <div class="panel-inner">
-            <div class="section-label stagger-in"><span class="label-number">06</span><span
-                    class="label-line"></span><span>CONTACT</span></div>
-            <h2 class="section-title stagger-in">Let's build something <span class="accent">extraordinary</span></h2>
-            <div class="contact-grid stagger-in">
-                <div class="contact-info">
-                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
-                        vision.</p>
-                    <div class="contact-item"><span class="c-icon">✉</span><span>B22EE087@iitj.ac.in</span></div>
-                    <div class="contact-item"><span class="c-icon">◎</span><span>IIT Jodhpur, Rajasthan, India</span>
+                <div class="skills-grid">
+                    <div class="skill-group fade-in">
+                        <h3>Languages</h3>
+                        <div class="skill-pills">
+                            <span>Python</span><span>R</span><span>SQL</span><span>C++</span><span>C</span>
+                        </div>
                     </div>
-                    <div class="contact-actions">
-                        <div class="social-links">
-                            <a href="https://github.com/akspshat1" class="social-link" target="_blank">
+                    <div class="skill-group fade-in">
+                        <h3>Data Tech</h3>
+                        <div class="skill-pills">
+                            <span>MySQL</span><span>PostgreSQL</span><span>PowerBI</span><span>Excel</span><span>RStudios</span>
+                        </div>
+                    </div>
+                    <div class="skill-group fade-in">
+                        <h3>AI / ML</h3>
+                        <div class="skill-pills">
+                            <span>PyTorch</span><span>Scikit-Learn</span><span>LangChain</span><span>Llamaindex</span><span>RAG</span>
+                        </div>
+                    </div>
+                    <div class="skill-group fade-in">
+                        <h3>Certifications</h3>
+                        <div class="skill-pills">
+                            <span>Adv SQL (Hackerrank)</span><span>Data Science (Cisco)</span><span>GenAI
+                                (Google)</span><span>Top 2% (MMVY)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEYOND CODE -->
+        <section class="section" id="beyond">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title fade-in">Beyond <em>Code</em></h2>
+                </div>
+                <div class="hobbies-grid">
+                    <div class="hobby fade-in">
+                        <span class="hobby-icon">📖</span>
+                        <h3>Reading</h3>
+                        <p>Absorbing wisdom from the ancients. Traveling through time and space through words.</p>
+                    </div>
+                    <div class="hobby fade-in">
+                        <span class="hobby-icon">🏊</span>
+                        <h3>Swimming</h3>
+                        <p>Finding flow and rhythm in water. A disciplined pursuit of physical and mental endurance.</p>
+                    </div>
+                    <div class="hobby fade-in">
+                        <span class="hobby-icon">🤝</span>
+                        <h3>Student Wellbeing</h3>
+                        <p>Assistant Head & Student Guide. Fostering a supportive community at IIT Jodhpur.</p>
+                    </div>
+                    <div class="hobby fade-in">
+                        <span class="hobby-icon">🔥</span>
+                        <h3>Prometeo</h3>
+                        <p>Resource Head. Managing resources and logistics for the technical festival.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section section-alt" id="contact">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h2 class="section-title fade-in">Let's <em>Connect</em></h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of
+                            your vision.</p>
+                        <div class="contact-detail">
+                            <span class="contact-icon">✉</span>
+                            <span>B22EE087@iitj.ac.in</span>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-icon">◎</span>
+                            <span>IIT Jodhpur, Rajasthan, India</span>
+                        </div>
+                        <div class="contact-links">
+                            <a href="https://github.com/akspshat1" target="_blank" rel="noopener">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                 </svg>
                                 GitHub
                             </a>
-                            <a href="https://www.linkedin.com/in/akspshat/" class="social-link" target="_blank">
+                            <a href="https://www.linkedin.com/in/akspshat/" target="_blank" rel="noopener">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                 </svg>
                                 LinkedIn
                             </a>
+                            <button id="viewResumeBtn" class="btn btn-outline resume-trigger">View Resume</button>
                         </div>
-                        <button id="viewResumeBtn" class="btn btn-ghost resume-trigger">View Resume</button>
                     </div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group fade-in">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group fade-in">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group fade-in">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary fade-in">Send Message →</button>
+                    </form>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name"
-                            placeholder="John Doe" required></div>
-                    <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"
-                            placeholder="john@example.com" required></div>
-                    <div class="form-group"><label for="message">Your Message</label><textarea id="message"
-                            placeholder="Tell me about your project..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary submit-btn"><span>Send Message</span><svg width="20"
-                            height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                        </svg></button>
-                </form>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Akshat. Crafted with care.</p>
+    </footer>
 
     <!-- Resume Modal -->
     <div id="resumeModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Resume</h3><button class="close-modal">&times;</button>
+                <h3>Resume</h3>
+                <button class="close-modal">&times;</button>
             </div>
-            <div class="modal-body"><iframe src="resume.pdf" width="100%" height="100%"></iframe></div>
+            <div class="modal-body">
+                <iframe src="resume.pdf" width="100%" height="100%"></iframe>
+            </div>
         </div>
     </div>
 
-    <script type="module" src="script.js?v=4"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
