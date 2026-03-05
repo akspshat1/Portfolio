@@ -1,30 +1,31 @@
 /* ================================
-   CLASSIC RETRO — ELEGANT & SUBTLE
-   Warm palette, serif type, clean lines
+   CLASSIC RETRO — ELEGANT WITH WOW
+   Warm palette, serif type, film grain,
+   marquee, parallax, magnetic hovers
    ================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* Warm retro palette */
   --bg: #FAF7F2;
   --bg-alt: #F2EDE6;
+  --bg-dark: #1A1A1A;
   --surface: #FFFFFF;
   --text: #1A1A1A;
   --text-secondary: #5A5A5A;
   --text-muted: #9A9A9A;
+  --text-light: #E8E4DF;
   --accent: #C45D3E;
   --accent-hover: #A84830;
   --accent-light: rgba(196, 93, 62, 0.08);
   --border: #E5E0DA;
   --border-light: #EDE9E3;
+  --border-dark: #333;
 
-  /* Typography */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-  /* Spacing & misc */
   --max-width: 1080px;
   --section-pad: clamp(5rem, 12vh, 8rem);
   --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -62,7 +63,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -89,18 +90,31 @@ a {
 }
 
 /* ===========================
-   CURSOR GLOW (desktop wow factor)
+   FILM GRAIN OVERLAY (subtle wow)
+   =========================== */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
+}
+
+/* ===========================
+   CURSOR GLOW
    =========================== */
 .cursor-glow {
   position: fixed;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(196, 93, 62, 0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(196, 93, 62, 0.045) 0%, transparent 65%);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
   transform: translate(-50%, -50%);
-  transition: opacity 0.4s;
   will-change: left, top;
 }
 
@@ -126,12 +140,13 @@ a {
   background: rgba(250, 247, 242, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid transparent;
   transition: var(--transition);
 }
 
 .nav.scrolled {
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.04);
+  border-bottom-color: var(--border-light);
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.03);
 }
 
 .nav-logo {
@@ -157,9 +172,9 @@ a {
 }
 
 .nav-links a {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   letter-spacing: 0.04em;
   transition: var(--transition);
   position: relative;
@@ -173,7 +188,7 @@ a {
   width: 0;
   height: 1.5px;
   background: var(--accent);
-  transition: width 0.3s ease;
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-links a:hover {
@@ -284,30 +299,46 @@ a {
   position: absolute;
   top: -20%;
   right: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(196, 93, 62, 0.06) 0%, transparent 60%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(196, 93, 62, 0.05) 0%, transparent 55%);
   border-radius: 50%;
   pointer-events: none;
+  animation: heroPulse 8s ease-in-out infinite;
 }
 
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -10%;
-  left: -5%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(196, 93, 62, 0.03) 0%, transparent 60%);
+  bottom: -15%;
+  left: -8%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(196, 93, 62, 0.035) 0%, transparent 55%);
   border-radius: 50%;
   pointer-events: none;
+  animation: heroPulse 10s ease-in-out infinite reverse;
+}
+
+@keyframes heroPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
 
 .hero-inner {
   text-align: center;
   max-width: 720px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-label {
@@ -326,7 +357,7 @@ a {
 
 .label-text {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -334,12 +365,14 @@ a {
 
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 11vw, 8rem);
+  font-size: clamp(4.5rem, 12vw, 9rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 0.95;
   margin-bottom: 1.5rem;
   color: var(--text);
+  cursor: default;
+  transition: var(--transition);
 }
 
 .char-wrap {
@@ -350,31 +383,37 @@ a {
 .char {
   display: inline-block;
   transform: translateY(110%);
-  animation: charReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: charReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.char:hover {
+  color: var(--accent);
+  transform: translateY(-4px) !important;
 }
 
 .char-wrap:nth-child(1) .char {
-  animation-delay: 0.1s;
+  animation-delay: 0.15s;
 }
 
 .char-wrap:nth-child(2) .char {
-  animation-delay: 0.16s;
-}
-
-.char-wrap:nth-child(3) .char {
   animation-delay: 0.22s;
 }
 
+.char-wrap:nth-child(3) .char {
+  animation-delay: 0.29s;
+}
+
 .char-wrap:nth-child(4) .char {
-  animation-delay: 0.28s;
+  animation-delay: 0.36s;
 }
 
 .char-wrap:nth-child(5) .char {
-  animation-delay: 0.34s;
+  animation-delay: 0.43s;
 }
 
 .char-wrap:nth-child(6) .char {
-  animation-delay: 0.40s;
+  animation-delay: 0.50s;
 }
 
 @keyframes charReveal {
@@ -385,7 +424,7 @@ a {
 
 .hero-typed {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--accent);
   letter-spacing: 0.04em;
   min-height: 1.5em;
@@ -442,7 +481,7 @@ a {
 
 .scroll-line {
   width: 1px;
-  height: 40px;
+  height: 48px;
   background: var(--border);
   position: relative;
   overflow: hidden;
@@ -456,7 +495,7 @@ a {
   width: 100%;
   height: 100%;
   background: var(--accent);
-  animation: scrollPulse 2s ease-in-out infinite;
+  animation: scrollPulse 2.2s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {
@@ -470,21 +509,96 @@ a {
 }
 
 /* ===========================
+   MARQUEE STRIP
+   =========================== */
+.marquee-strip {
+  overflow: hidden;
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  white-space: nowrap;
+  animation: marqueeScroll 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-track-reverse {
+  animation: marqueeScrollReverse 35s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.marquee-dot {
+  color: var(--accent) !important;
+  font-size: 0.5rem !important;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeScrollReverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ===========================
    BUTTONS
    =========================== */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.8rem;
+  padding: 0.8rem 2rem;
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.03em;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 3px;
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn-primary {
@@ -495,7 +609,7 @@ a {
 .btn-primary:hover {
   background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(196, 93, 62, 0.18);
+  box-shadow: 0 10px 30px rgba(196, 93, 62, 0.2);
 }
 
 .btn-outline {
@@ -510,6 +624,29 @@ a {
   transform: translateY(-2px);
 }
 
+.btn-outline-dark {
+  background: transparent;
+  color: var(--text-light);
+  border: 1.5px solid var(--border-dark);
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(196, 93, 62, 0.25);
+}
+
 /* ===========================
    SECTIONS
    =========================== */
@@ -520,6 +657,11 @@ a {
 
 .section-alt {
   background: var(--bg-alt);
+}
+
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--text-light);
 }
 
 .section-inner {
@@ -534,10 +676,10 @@ a {
 
 .section-number {
   font-family: var(--font-display);
-  font-size: clamp(5rem, 10vw, 8rem);
+  font-size: clamp(5rem, 10vw, 9rem);
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 1px var(--border);
+  -webkit-text-stroke: 1.5px var(--border);
   position: absolute;
   top: -2.5rem;
   left: -1rem;
@@ -545,11 +687,16 @@ a {
   z-index: 0;
   user-select: none;
   pointer-events: none;
+  transition: transform 0.1s linear;
+}
+
+.section-number-dark {
+  -webkit-text-stroke-color: var(--border-dark);
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -558,6 +705,10 @@ a {
 
 .section-title em {
   font-style: italic;
+  color: var(--accent);
+}
+
+.section-title-dark em {
   color: var(--accent);
 }
 
@@ -573,33 +724,42 @@ a {
 
 .photo-frame {
   width: 200px;
-  height: 200px;
+  height: 240px;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--border);
   position: relative;
+  transition: var(--transition);
 }
 
 .photo-frame::after {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   border-radius: 4px;
-  transform: translate(8px, 8px);
+  transform: translate(10px, 10px);
   z-index: -1;
+  opacity: 0.3;
+  transition: var(--transition);
+}
+
+.photo-frame:hover::after {
+  transform: translate(6px, 6px);
+  opacity: 0.5;
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(20%) contrast(1.02);
-  transition: filter 0.6s ease;
+  filter: grayscale(25%) contrast(1.02);
+  transition: filter 0.6s ease, transform 0.6s ease;
 }
 
 .photo-frame:hover img {
   filter: grayscale(0%) contrast(1.05);
+  transform: scale(1.03);
 }
 
 .about-lead {
@@ -611,6 +771,18 @@ a {
 
 .about-lead strong {
   color: var(--accent);
+  position: relative;
+}
+
+.about-lead strong::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.3;
 }
 
 .about-content p {
@@ -630,12 +802,25 @@ a {
 
 .stat {
   text-align: left;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.4;
 }
 
 .stat-val {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;
@@ -644,7 +829,7 @@ a {
 .stat-lbl {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -652,7 +837,7 @@ a {
 }
 
 /* ===========================
-   PROJECTS — Clean rows
+   PROJECTS
    =========================== */
 .projects-list {
   display: flex;
@@ -664,23 +849,45 @@ a {
   grid-template-columns: 160px 1fr 50px;
   gap: 2rem;
   align-items: center;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
+  position: relative;
+  cursor: pointer;
 }
 
 .project-row:first-child {
   border-top: 1px solid var(--border);
 }
 
+.project-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: var(--accent-light);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+
+.project-row:hover::before {
+  width: 100%;
+}
+
 .project-row:hover {
-  padding-left: 1rem;
-  background: rgba(196, 93, 62, 0.02);
+  padding-left: 1.5rem;
+}
+
+.project-row>* {
+  position: relative;
+  z-index: 1;
 }
 
 .project-num {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: var(--border);
   line-height: 1;
@@ -700,7 +907,7 @@ a {
 
 .project-tags span {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   color: var(--text-muted);
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--border-light);
@@ -711,7 +918,7 @@ a {
 
 .project-body h3 {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
@@ -732,7 +939,7 @@ a {
 }
 
 .project-arrow {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--text-muted);
   transition: var(--transition);
   text-align: center;
@@ -740,11 +947,11 @@ a {
 
 .project-row:hover .project-arrow {
   color: var(--accent);
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 /* ===========================
-   EXPERIENCE — Timeline
+   EXPERIENCE
    =========================== */
 .timeline {
   position: relative;
@@ -775,13 +982,35 @@ a {
   position: absolute;
   left: -3rem;
   top: 0.6rem;
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--accent);
-  transform: translateX(-3px);
+  transform: translateX(-4px);
   z-index: 1;
+  transition: var(--transition);
+}
+
+.timeline-entry.visible::before {
+  animation: dotPulse 0.6s ease forwards;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: translateX(-4px) scale(1);
+    box-shadow: 0 0 0 0 rgba(196, 93, 62, 0.4);
+  }
+
+  50% {
+    transform: translateX(-4px) scale(1.5);
+    box-shadow: 0 0 0 8px rgba(196, 93, 62, 0);
+  }
+
+  100% {
+    transform: translateX(-4px) scale(1);
+    box-shadow: 0 0 0 0 rgba(196, 93, 62, 0);
+  }
 }
 
 .timeline-date {
@@ -795,14 +1024,14 @@ a {
 
 .timeline-content h3 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.15rem;
 }
 
 .timeline-company {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
@@ -840,19 +1069,22 @@ a {
 }
 
 .skill-pills span {
-  padding: 0.35rem 0.9rem;
+  padding: 0.4rem 1rem;
   border: 1px solid var(--border);
   border-radius: 3px;
   font-size: 0.78rem;
   color: var(--text-secondary);
   font-weight: 400;
   transition: var(--transition);
+  cursor: default;
 }
 
 .skill-pills span:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 93, 62, 0.08);
 }
 
 /* ===========================
@@ -861,33 +1093,57 @@ a {
 .hobbies-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .hobby {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1.2rem;
   border: 1px solid var(--border-light);
   border-radius: 4px;
   transition: var(--transition);
   background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.hobby::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hobby:hover::before {
+  transform: scaleX(1);
 }
 
 .hobby:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
+  border-color: transparent;
 }
 
 .hobby-icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   display: block;
   margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.hobby:hover .hobby-icon {
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .hobby h3 {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -900,7 +1156,7 @@ a {
 }
 
 /* ===========================
-   CONTACT
+   CONTACT (dark section)
    =========================== */
 .contact-grid {
   display: grid;
@@ -909,8 +1165,8 @@ a {
   align-items: start;
 }
 
-.contact-info p:first-child {
-  color: var(--text-secondary);
+.contact-intro {
+  color: rgba(232, 228, 223, 0.7) !important;
   font-size: 0.95rem;
   font-weight: 300;
   line-height: 1.7;
@@ -923,7 +1179,7 @@ a {
   gap: 0.8rem;
   margin-bottom: 0.8rem;
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: rgba(232, 228, 223, 0.6);
 }
 
 .contact-icon {
@@ -934,7 +1190,7 @@ a {
 .contact-links {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -944,9 +1200,9 @@ a {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
-  color: var(--text-secondary);
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
+  color: rgba(232, 228, 223, 0.6);
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-dark);
   border-radius: 4px;
   transition: var(--transition);
 }
@@ -956,47 +1212,53 @@ a {
   color: var(--accent);
 }
 
-/* Form */
-.contact-form {
+/* Form — dark variant */
+.section-dark .contact-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-.form-group {
+.section-dark .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.form-group label {
+.section-dark .form-group label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  color: rgba(232, 228, 223, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-.form-group input,
-.form-group textarea {
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--border);
+.section-dark .form-group input,
+.section-dark .form-group textarea {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-dark);
   border-radius: 4px;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: var(--text);
-  background: var(--surface);
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.03);
   transition: var(--transition);
   outline: none;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
+.section-dark .form-group input::placeholder,
+.section-dark .form-group textarea::placeholder {
+  color: rgba(232, 228, 223, 0.2);
 }
 
-.form-group textarea {
+.section-dark .form-group input:focus,
+.section-dark .form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 93, 62, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.section-dark .form-group textarea {
   min-height: 120px;
   resize: vertical;
 }
@@ -1006,15 +1268,45 @@ a {
    =========================== */
 .footer {
   padding: 3rem 2rem;
-  text-align: center;
-  border-top: 1px solid var(--border-light);
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-dark);
 }
 
-.footer p {
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.footer-copy {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  color: rgba(232, 228, 223, 0.3);
   letter-spacing: 0.08em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(232, 228, 223, 0.4);
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
 }
 
 /* ===========================
@@ -1027,8 +1319,8 @@ a {
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
 }
 
 .modal.active {
@@ -1042,7 +1334,7 @@ a {
   max-width: 800px;
   height: 80vh;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
@@ -1086,9 +1378,9 @@ a {
    =========================== */
 .fade-in {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in.visible {
@@ -1096,21 +1388,20 @@ a {
   transform: translateY(0);
 }
 
-/* Stagger delays for children */
 .fade-in:nth-child(2) {
-  transition-delay: 0.08s;
+  transition-delay: 0.1s;
 }
 
 .fade-in:nth-child(3) {
-  transition-delay: 0.16s;
+  transition-delay: 0.18s;
 }
 
 .fade-in:nth-child(4) {
-  transition-delay: 0.24s;
+  transition-delay: 0.26s;
 }
 
 .fade-in:nth-child(5) {
-  transition-delay: 0.32s;
+  transition-delay: 0.34s;
 }
 
 /* ===========================
@@ -1139,8 +1430,8 @@ a {
   }
 
   .photo-frame {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 200px;
     margin: 0 auto;
   }
 
@@ -1190,6 +1481,16 @@ a {
     font-size: 4rem;
     top: -1.5rem;
     left: -0.5rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .marquee-strip {
+    padding: 1rem 0;
   }
 }
 
